@@ -24,12 +24,14 @@ namespace skolesystem.Models
 
         public bool is_deleted { get; set; }
 
+
+        // Foreign keys
         public int gender_id { get; set; }
 
         public int city_id { get; set; }
 
 
-        // Foreign keys
+       
 
     }
 }
