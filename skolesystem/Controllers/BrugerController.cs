@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using skolesystem.Data;
+using skolesystem.DTOs;
 using skolesystem.Models;
 
 namespace skolesystem.Controllers
@@ -38,17 +39,47 @@ namespace skolesystem.Controllers
             return CreatedAtAction(nameof(GetById), new { id = bruger.user_information_id }, bruger);
         }
 
+
+
+
         [HttpPut("{id}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Update(int id, Bruger bruger)
+        public async Task<IActionResult> PutUser(int id, BrugerUpdateDto brugerDto)
         {
-            if (id != bruger.user_information_id) return BadRequest();
-            _context.Entry(bruger).State = EntityState.Modified;
+            if (id != brugerDto.user_information_id)
+            {
+                return BadRequest();
+            }
+
+            var brugerToUpdate = await _context.Bruger.FindAsync(id);
+
+            if (brugerToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            // Map properties from DTO to the entity
+            brugerToUpdate.name = brugerDto.name;
+            brugerToUpdate.last_name = brugerDto.last_name;
+            brugerToUpdate.phone = brugerDto.phone;
+            brugerToUpdate.date_of_birth = brugerDto.date_of_birth;
+            brugerToUpdate.address = brugerDto.address;
+            brugerToUpdate.is_deleted = brugerDto.is_deleted;
+            
+
+            _context.Entry(brugerToUpdate).State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
+
+
+
+
+
+
+
+
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -58,7 +89,11 @@ namespace skolesystem.Controllers
             var brugerToDelete = await _context.Bruger.FindAsync(id);
             if (brugerToDelete == null) return NotFound();
 
-            _context.Bruger.Remove(brugerToDelete);
+            // Soft delete by setting is_deleted to true
+            brugerToDelete.is_deleted = true;
+
+            // Update the entity in the database
+            _context.Entry(brugerToDelete).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return NoContent();

@@ -28,6 +28,7 @@ namespace skolesystem.Models
 
         public int city_id { get; set; }
 
+
         // Foreign keys
         // public Gender Gender { get; set; }
         // public City City { get; set; }
