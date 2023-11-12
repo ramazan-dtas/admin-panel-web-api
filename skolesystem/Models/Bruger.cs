@@ -30,7 +30,6 @@ namespace skolesystem.Models
 
 
         // Foreign keys
-        // public Gender Gender { get; set; }
-        // public City City { get; set; }
+
     }
 }
