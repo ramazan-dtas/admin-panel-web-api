@@ -30,6 +30,8 @@ namespace skolesystem.Models
 
         public int city_id { get; set; }
 
+        public int user_id {get; set;}
+
 
        
 

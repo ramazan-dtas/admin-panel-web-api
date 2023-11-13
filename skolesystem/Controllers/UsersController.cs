@@ -108,16 +108,16 @@ namespace skolesystem.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var userToDelete = await _context.Users.FindAsync(id);
+            if (userToDelete == null) return NotFound();
 
-            if (userToDelete == null)
-            {
-                return NotFound();
-            }
+            // Soft delete by setting is_deleted to true
+            userToDelete.is_deleted = true;
 
-            _context.Users.Remove(userToDelete);
+            // Update the entity in the database
+            _context.Entry(userToDelete).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return NoContent();
