@@ -41,7 +41,6 @@ namespace skolesystem.Controllers
 
 
 
-
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, BrugerUpdateDto brugerDto)
         {
@@ -72,10 +71,6 @@ namespace skolesystem.Controllers
 
             return NoContent();
         }
-
-
-
-
 
 
 

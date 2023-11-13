@@ -1,71 +1,99 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using skolesystem.Data;
+using skolesystem.DTOs;
 using skolesystem.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-//namespace skolesystem.Controllers
-//{
-//    [Route("api/[controller]")]
-//    [ApiController]
-//    public class SkemaController : ControllerBase
-//    {
-//        private readonly SkemaDbContext _context;
+namespace skolesystem.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class SkemaController : ControllerBase
+    {
+        private readonly ISkemaRepository _skemaRepository;
 
-//        public SkemaController(SkemaDbContext context)
-//        {
-//            _context = context;
-//        }
+        public SkemaController(ISkemaRepository skemaRepository)
+        {
+            _skemaRepository = skemaRepository;
+        }
 
-//        [HttpGet]
-//        public async Task<IEnumerable<Skema>> Get()
-//        {
-//            return (IEnumerable<Skema>)await _context.Skema.ToListAsync();
-//        }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var skemaList = await _skemaRepository.GetAll();
+            return Ok(skemaList);
+        }
 
-//        [HttpGet("{id}")]
-//        [ProducesResponseType(typeof(Skema), StatusCodes.Status200OK)]
-//        [ProducesResponseType(StatusCodes.Status404NotFound)]
-//        public async Task<IActionResult> GetById(int id)
-//        {
-//            var skema = await _context.Skema.FindAsync(id);
-//            return skema == null ? NotFound() : Ok(skema);
-//        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var skema = await _skemaRepository.GetById(id);
 
-//        [HttpPost]
-//        [ProducesResponseType(StatusCodes.Status201Created)]
-//        public async Task<IActionResult> Create(Skema skema)
-//        {
-//            await _context.Skema.AddAsync(skema);
-//            await _context.SaveChangesAsync();
+            if (skema == null)
+            {
+                return NotFound();
+            }
 
-//            return CreatedAtAction(nameof(GetById), new { id = skema.AssignmentId }, skema);
-//        }
+            return Ok(skema);
+        }
 
-//        [HttpPut("{id}")]
-//        [ProducesResponseType(StatusCodes.Status204NoContent)]
-//        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-//        public async Task<IActionResult> Update(int id, Skema skema)
-//        {
-//            if (id != skema.AssignmentId) return BadRequest();
-//            _context.Entry(skema).State = EntityState.Modified;
-//            await _context.SaveChangesAsync();
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] SkemaCreateDto skemaDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-//            return NoContent();
-//        }
+            var skemaId = await _skemaRepository.Create(new Skema
+            {
+                user_subject_id = skemaDto.user_subject_id,
+                day_of_week = skemaDto.day_of_week,
+                start_time = skemaDto.start_time,
+                end_time = skemaDto.end_time,
+                class_id = skemaDto.class_id
+            });
 
-//        [HttpDelete("{id}")]
-//        [ProducesResponseType(StatusCodes.Status204NoContent)]
-//        [ProducesResponseType(StatusCodes.Status404NotFound)]
-//        public async Task<IActionResult> Delete(int id)
-//        {
-//            var skemaToDelete = await _context.Skema.FindAsync(id);
-//            if (skemaToDelete == null) return NotFound();
+            return CreatedAtAction(nameof(GetById), new { id = skemaId }, null);
+        }
 
-//            _context.Skema.Remove(skemaToDelete);
-//            await _context.SaveChangesAsync();
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] SkemaCreateDto skemaDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-//            return NoContent();
-//        }
-//    }
+            try
+            {
+                await _skemaRepository.Update(id, skemaDto);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
-//}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _skemaRepository.Delete(id);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+    }
+
+}

@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-namespace skolesystem.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace skolesystem.DTOs
 {
-    public class Bruger
+    public class BrugerReadDto
     {
-        [Key]
         public int user_information_id { get; set; }
 
         [MaxLength(40)]
@@ -15,7 +14,7 @@ namespace skolesystem.Models
 
         [MaxLength(20)]
         public string phone { get; set; }
-        
+
         [MaxLength(25)]
         public string date_of_birth { get; set; }
 
@@ -26,12 +25,6 @@ namespace skolesystem.Models
 
         public int gender_id { get; set; }
 
-        // Foreign keys
-
         public int city_id { get; set; }
-
-
-       
-
     }
 }

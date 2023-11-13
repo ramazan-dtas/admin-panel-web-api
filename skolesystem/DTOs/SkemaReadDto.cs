@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace skolesystem.DTOs
+﻿namespace skolesystem.DTOs
 {
-    public class SkemaCreateDto
+    public class SkemaReadDto
     {
         public int schedule_id { get; set; }
 
@@ -20,5 +18,4 @@ namespace skolesystem.DTOs
 
         //public string UserSubject { get; set; }
     }
-
 }

@@ -2,27 +2,30 @@
 
 namespace skolesystem.DTOs
 {
-    public class BrugerCreateDTO
+    public class BrugerCreateDto
     {
+        public int user_information_id { get; set; }
+
         [MaxLength(40)]
-        public string Name { get; set; }
+        public string name { get; set; }
 
         [MaxLength(60)]
-        public string LastName { get; set; }
+        public string last_name { get; set; }
 
         [MaxLength(20)]
-        public string Phone { get; set; }
+        public string phone { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        [MaxLength(25)]
+        public string date_of_birth { get; set; }
 
         [MaxLength(90)]
-        public string Address { get; set; }
+        public string address { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool is_deleted { get; set; }
 
-        public int GenderId { get; set; }
+        public int gender_id { get; set; }
 
-        public int CityId { get; set; }
+        public int city_id { get; set; }
     }
 
 }

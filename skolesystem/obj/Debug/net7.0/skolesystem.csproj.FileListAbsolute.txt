@@ -271,3 +271,4 @@ C:\Users\Frede\Source\Repos\admin-panel-web-api\skolesystem\obj\Debug\net7.0\ref
 C:\Users\Frede\Source\Repos\admin-panel-web-api\skolesystem\obj\Debug\net7.0\skolesystem.pdb
 C:\Users\Frede\Source\Repos\admin-panel-web-api\skolesystem\obj\Debug\net7.0\skolesystem.genruntimeconfig.cache
 C:\Users\Frede\Source\Repos\admin-panel-web-api\skolesystem\obj\Debug\net7.0\ref\skolesystem.dll
+C:\Users\Frede\source\repos\admin-panel-web-api\skolesystem\bin\Debug\net7.0\AutoMapper.dll

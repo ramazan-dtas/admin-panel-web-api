@@ -1,10 +1,22 @@
 ﻿namespace skolesystem.DTOs
 {
-    public class SkemaUpdateDTO
+    public class SkemaUpdateDto
     {
-        public string AssignmentDescription { get; set; }
-        public DateTime AssignmentDeadline { get; set; }
-        public bool IsDeleted { get; set; }
+        public int schedule_id { get; set; }
+
+        public int user_subject_id { get; set; }
+
+        public string day_of_week { get; set; }
+
+        public int start_time { get; set; }
+
+        public int end_time { get; set; }
+
+        public int class_id { get; set; }
+
+        //public string Class { get; set; }
+
+        //public string UserSubject { get; set; }
     }
 
 }
