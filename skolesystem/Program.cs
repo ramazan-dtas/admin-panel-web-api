@@ -2,6 +2,8 @@
 using skolesystem.Data;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using skolesystem.Service;
+using skolesystem.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -41,10 +43,11 @@ builder.Services.AddDbContext<UsersDbContext>(
 // Register your repository
 builder.Services.AddScoped<IBrugerRepository, BrugerRepository>();
 builder.Services.AddScoped<ISkemaRepository, SkemaRepository>();
-
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 // Register Service
 builder.Services.AddScoped<IBrugerService, BrugerService>();
 //builder.Services.AddScoped<ISkemaService, SkemaService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
 
 
 
