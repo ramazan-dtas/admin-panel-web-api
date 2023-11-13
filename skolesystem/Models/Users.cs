@@ -14,7 +14,7 @@ namespace skolesystem.Models
         public int phone_confirmed { get; set; }
         public int twofactor_enabled { get; set; }
         public int try_failed_count { get; set; }
-        public int lockout_end { get; set; } 
+        public int? lockout_end { get; set; } 
         public int user_information_id { get; set; }
         public int is_deleted { get; set; }
     }
