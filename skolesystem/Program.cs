@@ -4,6 +4,8 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using skolesystem.Service;
 using skolesystem.Repository;
+using skolesystem.Repository.skolesystem.Repository;
+using skolesystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -38,16 +40,20 @@ builder.Services.AddDbContext<SkemaDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 builder.Services.AddDbContext<UsersDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
+builder.Services.AddDbContext<AbsenceDbContext>(
+    o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 
 
 // Register your repository
 builder.Services.AddScoped<IBrugerRepository, BrugerRepository>();
 builder.Services.AddScoped<ISkemaRepository, SkemaRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IAbsenceRepository, AbsenceRepository>();
 // Register Service
 builder.Services.AddScoped<IBrugerService, BrugerService>();
 builder.Services.AddScoped<ISkemaService, SkemaService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IAbsenceService, AbsenceService>();
 
 
 

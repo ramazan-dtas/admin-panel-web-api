@@ -5,7 +5,7 @@ namespace skolesystem.Data
 {
     public class AbsenceDbContext : DbContext
     {
-        public DbSet<Absence> Absences { get; set; }
+        public DbSet<Absence> Absence { get; set; }
 
         public AbsenceDbContext(DbContextOptions<AbsenceDbContext> options) : base(options)
         {

@@ -34,28 +34,28 @@ namespace skolesystem.Repository
 
             public async Task<Absence> GetById(int id)
             {
-                return await _context.Absences.FindAsync(id);
+                return await _context.Absence.FindAsync(id);
             }
 
             public async Task<IEnumerable<Absence>> GetAll()
             {
-                return await _context.Absences.ToListAsync();
+                return await _context.Absence.ToListAsync();
             }
 
             public async Task<IEnumerable<Absence>> GetDeletedAbsences()
             {
-                return await _context.Absences.Where(a => a.is_deleted).ToListAsync();
+                return await _context.Absence.Where(a => a.is_deleted).ToListAsync();
             }
 
             public async Task AddAbsence(Absence absence)
             {
-                _context.Absences.Add(absence);
+                _context.Absence.Add(absence);
                 await _context.SaveChangesAsync();
             }
 
             public async Task UpdateAbsence(int id, Absence absence)
             {
-                var existingAbsence = await _context.Absences.FindAsync(id);
+                var existingAbsence = await _context.Absence.FindAsync(id);
 
                 if (existingAbsence == null)
                 {
@@ -74,7 +74,7 @@ namespace skolesystem.Repository
 
             public async Task SoftDeleteAbsence(int id)
             {
-                var absenceToDelete = await _context.Absences.FindAsync(id);
+                var absenceToDelete = await _context.Absence.FindAsync(id);
 
                 if (absenceToDelete != null)
                 {
