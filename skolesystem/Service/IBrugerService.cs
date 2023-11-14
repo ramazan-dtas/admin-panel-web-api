@@ -1,15 +1,16 @@
 ﻿using skolesystem.Models;
 
+// Service for business logic
 public interface IBrugerService
 {
-    Bruger GetById(int id);
-    IEnumerable<Bruger> GetAll();
-    void Add(Bruger bruger);
-    void Update(Bruger bruger);
-    void Delete(int id);
+    Task<Bruger> GetBrugerById(int id);
+    Task<IEnumerable<Bruger>> GetAllBrugers();
+    Task<IEnumerable<Bruger>> GetDeletedBrugers();
+    Task AddBruger(Bruger bruger);
+    Task UpdateBruger(Bruger bruger);
+    Task SoftDeleteBruger(int id);
 }
 
-// BrugerService implementation
 public class BrugerService : IBrugerService
 {
     private readonly IBrugerRepository _brugerRepository;
@@ -19,31 +20,33 @@ public class BrugerService : IBrugerService
         _brugerRepository = brugerRepository;
     }
 
-    public Bruger GetById(int id)
+    public async Task<Bruger> GetBrugerById(int id)
     {
-        return _brugerRepository.GetById(id);
+        return await _brugerRepository.GetById(id);
     }
 
-    public IEnumerable<Bruger> GetAll()
+    public async Task<IEnumerable<Bruger>> GetAllBrugers()
     {
-        return _brugerRepository.GetAll();
+        return await _brugerRepository.GetAll();
     }
 
-    public void Add(Bruger bruger)
+    public async Task<IEnumerable<Bruger>> GetDeletedBrugers()
     {
-        // Add any business logic/validation before calling the repository
-        _brugerRepository.Add(bruger);
+        return await _brugerRepository.GetDeletedBrugers();
     }
 
-    public void Update(Bruger bruger)
+    public async Task AddBruger(Bruger bruger)
     {
-        // Add any business logic/validation before calling the repository
-        _brugerRepository.Update(bruger);
+        await _brugerRepository.AddBruger(bruger);
     }
 
-    public void Delete(int id)
+    public async Task UpdateBruger(Bruger bruger)
     {
-        // Add any business logic/validation before calling the repository
-        _brugerRepository.Delete(id);
+        await _brugerRepository.UpdateBruger(bruger);
+    }
+
+    public async Task SoftDeleteBruger(int id)
+    {
+        await _brugerRepository.SoftDeleteBruger(id);
     }
 }

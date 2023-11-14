@@ -27,8 +27,6 @@ namespace skolesystem.Controllers
         public async Task<IEnumerable<UserReadDto>> GetUsers()
         {
             var users = await _usersService.GetAllUsers();
-            // Map your User entities to UserReadDto using AutoMapper or manual mapping
-            // For simplicity, manual mapping is shown here
             var userDtos = new List<UserReadDto>();
             foreach (var user in users)
             {
@@ -86,14 +84,12 @@ namespace skolesystem.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateUser(UserCreateDto userDto)
         {
-            // Map UserCreateDto to User entity using AutoMapper or manual mapping
-            // For simplicity, manual mapping is shown here
             var user = new Users
             {
                 surname = userDto.surname,
                 email = userDto.email,
                 password_hash = userDto.password_hash
-                // Map other fields as needed
+
             };
 
             await _usersService.AddUser(user);
@@ -110,12 +106,10 @@ namespace skolesystem.Controllers
             {
                 return NotFound();
             }
-
-            // Map UserUpdateDto to User entity using AutoMapper or manual mapping
-            // For simplicity, manual mapping is shown here
+ 
             existingUser.surname = userDto.surname;
             existingUser.email = userDto.email;
-            // Map other fields as needed
+
 
             await _usersService.UpdateUser(existingUser);
 

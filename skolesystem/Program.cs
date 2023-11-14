@@ -46,7 +46,7 @@ builder.Services.AddScoped<ISkemaRepository, SkemaRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 // Register Service
 builder.Services.AddScoped<IBrugerService, BrugerService>();
-//builder.Services.AddScoped<ISkemaService, SkemaService>();
+builder.Services.AddScoped<ISkemaService, SkemaService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 
 
