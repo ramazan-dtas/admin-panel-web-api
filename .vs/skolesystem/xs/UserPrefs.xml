@@ -1,4 +1,68 @@
-﻿<Properties StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https">
-  <MonoDevelop.Ide.ItemProperties.skolesystem FirstBuild="True" />
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.skolesystem PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="skolesystem/DTOs/UserCreateDto.cs">
+    <Files>
+      <File FileName="skolesystem/DTOs/UserReadDto.cs" Line="8" Column="50" />
+      <File FileName="skolesystem/appsettings.json" Line="10" Column="99" />
+      <File FileName="skolesystem/DTOs/SkemaCreateDTO.cs" />
+      <File FileName="skolesystem/DTOs/SkemaReadDto.cs" />
+      <File FileName="skolesystem/DTOs/SkemaUpdateDTO.cs" />
+      <File FileName="skolesystem/Models/Skema.cs" Line="27" Column="1" />
+      <File FileName="skolesystem/Repository/ISkemaRepository.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Data/SkemaDbContext.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Controllers/SkemaController.cs" />
+      <File FileName="skolesystem/DTOs/UserUpdateDto.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Models/Users.cs" Line="12" Column="1" />
+      <File FileName="skolesystem/appsettings.Development.json" />
+      <File FileName="skolesystem/DTOs/UserCreateDto.cs" Line="15" Column="1" />
+      <File FileName="skolesystem/Controllers/UsersController.cs" Line="63" Column="52" />
+      <File FileName="skolesystem/Data/UsersDbContext.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/DTOs/User_informationReadDto.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Program.cs" Line="6" Column="30" />
+      <File FileName="skolesystem/Data/User_informationDbContext.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Service/IUser_informationService.cs" Line="46" Column="54" />
+      <File FileName="skolesystem/Migrations/20231112092604_User_informationMigration.cs" />
+      <File FileName="skolesystem/Migrations/User_informationDbContextModelSnapshot.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Migrations/20231112092604_User_informationMigration.Designer.cs" />
+      <File FileName="skolesystem/Models/Absence.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Repository/IAbsenceRepository.cs" Line="79" Column="2" />
+      <File FileName="skolesystem/Service/IAbsenceService.cs" Line="3" Column="30" />
+      <File FileName="skolesystem/Service/ISkemaService.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Models/User_information.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Repository/IUser_informationRepository.cs" Line="25" Column="6" />
+      <File FileName="skolesystem/Service/IUsersService.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Repository/IUsersRepository.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/DTOs/User_informationUpdateDTO.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/DTOs/User_informationCreateDTO.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Data/AbsenceDbContext.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Controllers/User_informationController.cs" Line="99" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="skolesystem" expanded="True">
+            <Node name="skolesystem">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="DTOs" expanded="True">
+                <Node name="UserCreateDto.cs" selected="True" />
+              </Node>
+              <Node name="Migrations" expanded="True">
+                <Node name="20231112092604_User_informationMigration.cs" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Repository" expanded="True" />
+              <Node name="Service" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

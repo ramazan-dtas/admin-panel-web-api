@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using skolesystem.Data;
 using skolesystem.DTOs; 
 using skolesystem.Models;
+using skolesystem.Service;
 
 namespace skolesystem.Controllers
 {
@@ -13,19 +14,19 @@ namespace skolesystem.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UsersDbContext _context; 
+        private readonly UsersDbContext _context;
+        private readonly IUsersService _usersService;
 
-        public UserController(UsersDbContext context)
+        public UserController(UsersDbContext context, IUsersService usersService)
         {
             _context = context;
+            _usersService = usersService;
         }
 
         [HttpGet]
         public async Task<IEnumerable<UserReadDto>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
-            // Map your User entities to UserReadDto using AutoMapper or manual mapping
-            // For simplicity, manual mapping is shown here
+            var users = await _usersService.GetAllUsers();
             var userDtos = new List<UserReadDto>();
             foreach (var user in users)
             {
@@ -37,8 +38,7 @@ namespace skolesystem.Controllers
                     password_hash = user.password_hash,
 
                     is_deleted = user.is_deleted
-
-                }) ;
+                });
             }
             return userDtos;
         }
@@ -48,7 +48,7 @@ namespace skolesystem.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _usersService.GetUserById(id);
 
             if (user == null)
             {
@@ -59,8 +59,9 @@ namespace skolesystem.Controllers
             {
                 user_id = user.user_id,
                 surname = user.surname,
-                email = user.email
-                // Map other fields as needed
+                email = user.email,
+                password_hash = user.password_hash,
+                is_deleted = user.is_deleted
             };
 
             return Ok(userDto);
@@ -70,18 +71,15 @@ namespace skolesystem.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateUser(UserCreateDto userDto)
         {
-            // Map UserCreateDto to User entity using AutoMapper or manual mapping
-            // For simplicity, manual mapping is shown here
             var user = new Users
             {
                 surname = userDto.surname,
                 email = userDto.email,
                 password_hash = userDto.password_hash
-                // Map other fields as needed
+
             };
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await _usersService.AddUser(user);
 
             return CreatedAtAction(nameof(GetUserById), new { id = user.user_id }, userDto);
         }
@@ -89,21 +87,18 @@ namespace skolesystem.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserUpdateDto userDto)
         {
-            var userToUpdate = await _context.Users.FindAsync(id);
+            var existingUser = await _usersService.GetUserById(id);
 
-            if (userToUpdate == null)
+            if (existingUser == null)
             {
                 return NotFound();
             }
+ 
+            existingUser.surname = userDto.surname;
+            existingUser.email = userDto.email;
 
-            // Map UserUpdateDto to User entity using AutoMapper or manual mapping
-            // For simplicity, manual mapping is shown here
-            userToUpdate.surname = userDto.surname;
-            userToUpdate.email = userDto.email;
-            // Map other fields as needed
 
-            _context.Entry(userToUpdate).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            await _usersService.UpdateUser(existingUser);
 
             return NoContent();
         }
@@ -113,17 +108,17 @@ namespace skolesystem.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(int id)
         {
-            var userToDelete = await _context.Users.FindAsync(id);
-            if (userToDelete == null) return NotFound();
+            var userToDelete = await _usersService.GetUserById(id);
 
-            // Soft delete by setting is_deleted to true
-            userToDelete.is_deleted = true;
+            if (userToDelete == null)
+            {
+                return NotFound();
+            }
 
-            // Update the entity in the database
-            _context.Entry(userToDelete).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            await _usersService.SoftDeleteUser(id);
 
             return NoContent();
         }
     }
 }
+

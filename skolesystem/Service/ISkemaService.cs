@@ -1,27 +1,49 @@
-﻿//using skolesystem.DTOs;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using skolesystem.DTOs;
+using skolesystem.Models;
 
+public interface ISkemaService
+{
+    Task<IEnumerable<Skema>> GetAllSchemata();
+    Task<Skema> GetSkemaById(int id);
+    Task<int> CreateSkema(Skema skema);
+    Task UpdateSkema(int id, SkemaCreateDto skemaDto);
+    Task DeleteSkema(int id);
+}
 
-//public interface ISkemaService
-//{
-//    List<SkemaReadDto> GetSkemaList();
-//}
+public class SkemaService : ISkemaService
+{
+    private readonly ISkemaRepository _skemaRepository;
 
-//public class SkemaService : ISkemaService
-//{
-//    private readonly ISkemaRepository _skemaRepository;
+    public SkemaService(ISkemaRepository skemaRepository)
+    {
+        _skemaRepository = skemaRepository;
+    }
 
-//    public SkemaService(ISkemaRepository skemaRepository)
-//    {
-//        _skemaRepository = skemaRepository;
-//    }
+    public async Task<IEnumerable<Skema>> GetAllSchemata()
+    {
+        return await _skemaRepository.GetAll();
+    }
 
-//    public List<SkemaReadDto> GetSkemaList()
-//    {
-//        // Implement logic to get a list of SkemaCreateDto from the repository
-//        var skemaList = _skemaRepository.GetSkemaList();
-//        // Map your entities to SkemaCreateDto if necessary
-//        // Example: var skemaDtos = Mapper.Map<List<SkemaCreateDto>>(skemaList);
-//        return skemaList;
-//    }
-//}
+    public async Task<Skema> GetSkemaById(int id)
+    {
+        return await _skemaRepository.GetById(id);
+    }
 
+    public async Task<int> CreateSkema(Skema skema)
+    {
+        return await _skemaRepository.Create(skema);
+    }
+
+    public async Task UpdateSkema(int id, SkemaCreateDto skemaDto)
+    {
+        await _skemaRepository.Update(id, skemaDto);
+    }
+
+    public async Task DeleteSkema(int id)
+    {
+        await _skemaRepository.Delete(id);
+    }
+}

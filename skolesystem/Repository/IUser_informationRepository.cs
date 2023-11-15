@@ -4,54 +4,63 @@ using Microsoft.EntityFrameworkCore;
 using skolesystem.Data;
 using skolesystem.Models;
 
+// Repository for data access
 public interface IUser_informationRepository
 {
-    User_information GetById(int id);
-    IEnumerable<User_information> GetAll();
-    void Add(User_information bruger);
-    void Update(User_information bruger);
-    void Delete(int id);
+    Task<User_information> GetById(int id);
+    Task<IEnumerable<User_information>> GetAll();
+    Task<IEnumerable<User_information>> GetDeletedBrugers();
+    Task AddBruger(User_information bruger);
+    Task UpdateBruger(User_information bruger);
+    Task SoftDeleteBruger(int id);
 }
 
 public class User_informationRepository : IUser_informationRepository
 {
-    private readonly User_informationDbContext _dbContext;
+    private readonly User_informationDbContext _context;
 
-    public User_informationRepository(User_informationDbContext dbContext)
+    public User_informationRepository(User_informationDbContext context)
     {
-        _dbContext = dbContext;
+        _context = context;
     }
 
-    public User_information GetById(int id)
+    public async Task<User_information> GetById(int id)
     {
-        return _dbContext.User_information.Find(id);
+        return await _context.User_information.FindAsync(id);
     }
 
-    public IEnumerable<User_information> GetAll()
+    public async Task<IEnumerable<User_information>> GetAll()
     {
-        return _dbContext.User_information.ToList();
+        return await _context.User_information.ToListAsync();
     }
 
-    public void Add(User_information bruger)
+    public async Task<IEnumerable<User_information>> GetDeletedBrugers()
     {
-        _dbContext.User_information.Add(bruger);
-        _dbContext.SaveChanges();
+        return await _context.User_information.Where(b => b.is_deleted).ToListAsync();
     }
 
-    public void Update(User_information bruger)
+    public async Task AddBruger(User_information bruger)
     {
-        _dbContext.Entry(bruger).State = EntityState.Modified;
-        _dbContext.SaveChanges();
+        _context.User_information.Add(bruger);
+        await _context.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task UpdateBruger(User_information bruger)
     {
-        var brugerToDelete = _dbContext.User_information.Find(id);
+        _context.Entry(bruger).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task SoftDeleteBruger(int id)
+    {
+        var brugerToDelete = await _context.User_information.FindAsync(id);
 
         if (brugerToDelete != null)
         {
-            _dbContext.User_information.Remove(brugerToDelete);
-            _dbContext.SaveChanges();
+            brugerToDelete.is_deleted = true;
+            _context.Entry(brugerToDelete).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }
+

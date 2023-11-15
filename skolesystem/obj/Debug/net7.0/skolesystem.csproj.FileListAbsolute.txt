@@ -364,6 +364,7 @@ C:/Users/Frede/source/repos/admin-panel-web-api/skolesystem/bin/Debug/net7.0/Aut
 /Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/obj/Debug/net7.0/skolesystem.pdb
 /Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/obj/Debug/net7.0/skolesystem.genruntimeconfig.cache
 /Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/obj/Debug/net7.0/ref/skolesystem.dll
+<<<<<<< HEAD
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/bin/Debug/net7.0/appsettings.Development.json
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/bin/Debug/net7.0/appsettings.json
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/bin/Debug/net7.0/skolesystem
@@ -456,3 +457,5 @@ C:/Users/Frede/source/repos/admin-panel-web-api/skolesystem/bin/Debug/net7.0/Aut
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/obj/Debug/net7.0/skolesystem.pdb
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/obj/Debug/net7.0/skolesystem.genruntimeconfig.cache
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/obj/Debug/net7.0/ref/skolesystem.dll
+=======
+>>>>>>> refs/remotes/origin/Frederik

@@ -15,7 +15,7 @@ namespace skolesystem.Controllers
         public User_informationController(User_informationDbContext context) => _context = context;
 
         [HttpGet]
-        public async Task<IEnumerable<User_information>> Get() 
+        public async Task<IEnumerable<User_information>> Get()
         {
             return await _context.User_information.ToListAsync();
         }
@@ -23,7 +23,7 @@ namespace skolesystem.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(User_information), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetById(int id) 
+        public async Task<IActionResult> GetById(int id)
         {
             var bruger = await _context.User_information.FindAsync(id);
             return bruger == null ? NotFound() : Ok(bruger);
@@ -63,7 +63,7 @@ namespace skolesystem.Controllers
             brugerToUpdate.date_of_birth = brugerDto.date_of_birth;
             brugerToUpdate.address = brugerDto.address;
             brugerToUpdate.is_deleted = brugerDto.is_deleted;
-            
+
 
             _context.Entry(brugerToUpdate).State = EntityState.Modified;
 
