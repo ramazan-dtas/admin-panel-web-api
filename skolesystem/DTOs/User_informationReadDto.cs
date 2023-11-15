@@ -2,7 +2,7 @@
 
 namespace skolesystem.DTOs
 {
-    public class BrugerCreateDto
+    public class User_informationReadDto
     {
         public int user_information_id { get; set; }
 
@@ -25,9 +25,9 @@ namespace skolesystem.DTOs
 
         public int gender_id { get; set; }
 
-        public int city_id { get; set; }
+
+
 
         public int user_id {get; set;}
     }
-
 }

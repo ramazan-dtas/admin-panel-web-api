@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UFXnjKV+xK4lfx8+lvX53Fb0NiZxgltHId1RMWQkhOf3q5m+cDdS5ir7pvTsGqurpf1TZ6h9SIfg6eckbfR2VQ==",
+  "dgSpecHash": "C049lnH6rr1KA7L3tmtXDCWUPMmbziFSLD5p6wuCXUxs1ENPO67HrKPGCOUHrCfYJcZaD36i+FaDsTdvcAx1UQ==",
   "success": true,
-  "projectFilePath": "/Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/skolesystem.csproj",
+  "projectFilePath": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj",
   "expectedPackageFiles": [
     "/Users/paullinecarls/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/paullinecarls/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",

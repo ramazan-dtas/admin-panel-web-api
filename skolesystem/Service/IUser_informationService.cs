@@ -1,41 +1,41 @@
 ﻿using skolesystem.Models;
 
-public interface IBrugerService
+public interface IUser_informationService
 {
-    Bruger GetById(int id);
-    IEnumerable<Bruger> GetAll();
-    void Add(Bruger bruger);
-    void Update(Bruger bruger);
+    User_information GetById(int id);
+    IEnumerable<User_information> GetAll();
+    void Add(User_information bruger);
+    void Update(User_information bruger);
     void Delete(int id);
 }
 
 // BrugerService implementation
-public class BrugerService : IBrugerService
+public class User_informationService : IUser_informationService
 {
-    private readonly IBrugerRepository _brugerRepository;
+    private readonly IUser_informationRepository _brugerRepository;
 
-    public BrugerService(IBrugerRepository brugerRepository)
+    public User_informationService(IUser_informationRepository brugerRepository)
     {
         _brugerRepository = brugerRepository;
     }
 
-    public Bruger GetById(int id)
+    public User_information GetById(int id)
     {
         return _brugerRepository.GetById(id);
     }
 
-    public IEnumerable<Bruger> GetAll()
+    public IEnumerable<User_information> GetAll()
     {
         return _brugerRepository.GetAll();
     }
 
-    public void Add(Bruger bruger)
+    public void Add(User_information bruger)
     {
         // Add any business logic/validation before calling the repository
         _brugerRepository.Add(bruger);
     }
 
-    public void Update(Bruger bruger)
+    public void Update(User_information bruger)
     {
         // Add any business logic/validation before calling the repository
         _brugerRepository.Update(bruger);

@@ -52,8 +52,9 @@ namespace skolesystem.Controllers
 
             var skemaId = await _skemaRepository.Create(new Skema
             {
-                user_subject_id = skemaDto.user_subject_id,
+                subject_id = skemaDto.subject_id,
                 day_of_week = skemaDto.day_of_week,
+                subject_name = skemaDto.subject_name,
                 start_time = skemaDto.start_time,
                 end_time = skemaDto.end_time,
                 class_id = skemaDto.class_id

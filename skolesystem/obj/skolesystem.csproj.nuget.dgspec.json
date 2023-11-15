@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/skolesystem.csproj": {}
+    "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj": {}
   },
   "projects": {
-    "/Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/skolesystem.csproj": {
+    "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/skolesystem.csproj",
+        "projectUniqueName": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj",
         "projectName": "skolesystem",
-        "projectPath": "/Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/skolesystem.csproj",
+        "projectPath": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj",
         "packagesPath": "/Users/paullinecarls/.nuget/packages/",
-        "outputPath": "/Users/paullinecarls/Developer/skolesystem/admin-panel-web-api/skolesystem/obj/",
+        "outputPath": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/paullinecarls/.nuget/NuGet/NuGet.Config"

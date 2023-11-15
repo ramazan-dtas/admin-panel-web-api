@@ -53,9 +53,10 @@ public class SkemaRepository : ISkemaRepository
         }
 
         // Map properties from DTO to the entity
-        skemaToUpdate.user_subject_id = skemaDto.user_subject_id;
+        skemaToUpdate.subject_id = skemaDto.subject_id;
         skemaToUpdate.day_of_week = skemaDto.day_of_week;
-        skemaToUpdate.user_subject_id = skemaDto.user_subject_id;
+        skemaToUpdate.subject_name = skemaDto.subject_name;
+        skemaToUpdate.start_time = skemaDto.start_time;
         skemaToUpdate.end_time = skemaDto.end_time;
         skemaToUpdate.class_id = skemaDto.class_id;
 

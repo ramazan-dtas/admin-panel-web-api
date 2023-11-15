@@ -30,7 +30,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configure MySQL database connection
-builder.Services.AddDbContext<BrugerDbContext>(
+builder.Services.AddDbContext<User_informationDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 builder.Services.AddDbContext<SkemaDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
@@ -39,11 +39,11 @@ builder.Services.AddDbContext<UsersDbContext>(
 
 
 // Register your repository
-builder.Services.AddScoped<IBrugerRepository, BrugerRepository>();
+builder.Services.AddScoped<IUser_informationRepository, User_informationRepository>();
 builder.Services.AddScoped<ISkemaRepository, SkemaRepository>();
 
 // Register Service
-builder.Services.AddScoped<IBrugerService, BrugerService>();
+builder.Services.AddScoped<IUser_informationService, User_informationService>();
 //builder.Services.AddScoped<ISkemaService, SkemaService>();
 
 

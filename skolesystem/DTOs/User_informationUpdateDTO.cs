@@ -2,7 +2,7 @@
 
 namespace skolesystem.DTOs
 {
-    public class BrugerUpdateDto
+    public class User_informationUpdateDto
     {
         public int user_information_id { get; set; }
 

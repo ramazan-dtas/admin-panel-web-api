@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace skolesystem.Models
 {
-    public class Bruger
+    public class User_information
     {
         [Key]
         public int user_information_id { get; set; }
@@ -24,11 +24,12 @@ namespace skolesystem.Models
 
         public bool is_deleted { get; set; }
 
-        public int gender_id { get; set; }
+
+
 
         // Foreign keys
 
-        public int city_id { get; set; }
+        public int gender_id { get; set; }
 
         public int user_id {get; set;}
 

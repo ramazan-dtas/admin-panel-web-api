@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace skolesystem.Migrations
 {
     /// <inheritdoc />
-    public partial class BrugerMigration : Migration
+    public partial class User_informationMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace skolesystem.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Bruger",
+                name: "user_information",
                 columns: table => new
                 {
                     user_information_id = table.Column<int>(type: "int", nullable: false)
@@ -32,7 +32,7 @@ namespace skolesystem.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     is_deleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     gender_id = table.Column<int>(type: "int", nullable: false),
-                    city_id = table.Column<int>(type: "int", nullable: false)
+                    user_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace skolesystem.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bruger");
+                name: "user_information");
         }
     }
 }

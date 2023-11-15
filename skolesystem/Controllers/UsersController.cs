@@ -35,13 +35,7 @@ namespace skolesystem.Controllers
                     surname = user.surname,
                     email = user.email,
                     password_hash = user.password_hash,
-                    email_confirmed = user.email_confirmed,
-                    lockout_enabled = user.lockout_enabled,
-                    phone_confirmed = user.phone_confirmed,
-                    twofactor_enabled = user.twofactor_enabled,
-                    try_failed_count = user.try_failed_count,
-                    lockout_end = user.lockout_end,
-                    user_information_id = user.user_information_id,
+
                     is_deleted = user.is_deleted
 
                 }) ;
