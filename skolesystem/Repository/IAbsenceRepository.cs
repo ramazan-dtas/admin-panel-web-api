@@ -2,14 +2,6 @@
 using skolesystem.Data;
 using skolesystem.Models;
 
-namespace skolesystem.Repository
-{
-    using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     namespace skolesystem.Repository
     {
         // Repository for data access

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\skolesystem\\skolesystem.csproj": {}
+    "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\SkolesystemUnittest\\SkolesystemUnittest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\skolesystem\\skolesystem.csproj": {
+    "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\SkolesystemUnittest\\SkolesystemUnittest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\skolesystem\\skolesystem.csproj",
-        "projectName": "skolesystem",
-        "projectPath": "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\skolesystem\\skolesystem.csproj",
+        "projectUniqueName": "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\SkolesystemUnittest\\SkolesystemUnittest.csproj",
+        "projectName": "SkolesystemUnittest",
+        "projectPath": "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\SkolesystemUnittest\\SkolesystemUnittest.csproj",
         "packagesPath": "C:\\Users\\Frede\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\skolesystem\\obj\\",
+        "outputPath": "C:\\Users\\Frede\\source\\repos\\Svend\\admin-panel-web-api\\SkolesystemUnittest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,39 +45,25 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "AutoMapper": {
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[17.3.2, )"
             },
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[7.0.13, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.13, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[7.0.13, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
+            "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.13, )"
+              "version": "[3.1.2, )"
             },
-            "MySql.Data": {
+            "xunit": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[2.4.2, )"
             },
-            "Pomelo.EntityFrameworkCore.MySql": {
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.5.0, )"
+              "version": "[2.4.5, )"
             }
           },
           "imports": [
@@ -92,9 +78,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
