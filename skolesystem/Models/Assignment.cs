@@ -26,6 +26,9 @@ namespace skolesystem.Models
         [ForeignKey("Classe")]
         public int class_id { get; set; }
         public Classe Classe { get; set; }
+
+
+
     }
 }
 

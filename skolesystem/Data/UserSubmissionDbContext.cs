@@ -22,7 +22,16 @@ namespace skolesystem.Data
             .HasOne(s => s.Assignment)
             .WithMany(c => c.userSubmissions)
             .HasForeignKey(s => s.assignment_id);
+
+            modelBuilder.Entity<UserSubmission>()
+           .HasOne(s => s.User)
+           .WithMany(c => c.userSubmissions)
+           .HasForeignKey(s => s.user_id);
         }
+
+
+
+
 
 
 

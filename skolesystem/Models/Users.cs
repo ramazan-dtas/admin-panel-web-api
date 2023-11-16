@@ -12,6 +12,7 @@ namespace skolesystem.Models
         public string password_hash { get; set; }
         public bool is_deleted { get; set; }
         public int role_id { get; set; }
+        public List<UserSubmission> userSubmissions { get; set; }
     }
 
 }
