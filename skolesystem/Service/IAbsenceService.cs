@@ -1,6 +1,6 @@
 ﻿using skolesystem.DTOs;
 using skolesystem.Models;
-using skolesystem.Repository.skolesystem.Repository;
+using skolesystem.Repository;
 
 namespace skolesystem.Service
 {

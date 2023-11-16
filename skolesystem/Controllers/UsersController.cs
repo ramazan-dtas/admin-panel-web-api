@@ -92,7 +92,7 @@ namespace skolesystem.Controllers
 
             };
 
-            await _usersService.AddUser(user);
+            await _usersService.AddUser(userDto);
 
             return CreatedAtAction(nameof(GetUserById), new { id = user.user_id }, userDto);
         }
@@ -100,19 +100,7 @@ namespace skolesystem.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserUpdateDto userDto)
         {
-            var existingUser = await _usersService.GetUserById(id);
-
-            if (existingUser == null)
-            {
-                return NotFound();
-            }
- 
-            existingUser.surname = userDto.surname;
-            existingUser.email = userDto.email;
-
-
-            await _usersService.UpdateUser(existingUser);
-
+            await _usersService.UpdateUser(id, userDto);
             return NoContent();
         }
 

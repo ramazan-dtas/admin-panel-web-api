@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "skolesystem", "skolesystem\skolesystem.csproj", "{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkolesystemUnittest", "SkolesystemUnittest\SkolesystemUnittest.csproj", "{9581E9B4-E3DF-4A25-8207-C58FDD12D6DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skolesystem.Tests", "skolesystem.Tests\skolesystem.Tests.csproj", "{C820E7E2-2B50-4327-AD59-8245AFDACA3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9581E9B4-E3DF-4A25-8207-C58FDD12D6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9581E9B4-E3DF-4A25-8207-C58FDD12D6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9581E9B4-E3DF-4A25-8207-C58FDD12D6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9581E9B4-E3DF-4A25-8207-C58FDD12D6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C820E7E2-2B50-4327-AD59-8245AFDACA3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C820E7E2-2B50-4327-AD59-8245AFDACA3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C820E7E2-2B50-4327-AD59-8245AFDACA3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C820E7E2-2B50-4327-AD59-8245AFDACA3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

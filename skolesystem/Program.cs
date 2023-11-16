@@ -4,7 +4,6 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using skolesystem.Service;
 using skolesystem.Repository;
-using skolesystem.Repository.skolesystem.Repository;
 using skolesystem.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,7 +55,8 @@ builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IAbsenceService, AbsenceService>();
 
 
-
+// Add AutoMapper configuration
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 var app = builder.Build();
 
