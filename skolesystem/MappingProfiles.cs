@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using skolesystem.DTOs;
 using skolesystem.Models;
+using skolesystem.Repository;
+using skolesystem.Service;
 
 public class MappingProfiles : Profile
 {
@@ -10,6 +12,8 @@ public class MappingProfiles : Profile
         CreateMap<Users, UserReadDto>();
         CreateMap<UserUpdateDto, Users>();
         CreateMap<Users, UserUpdateDto>();
-        
+        CreateMap<UsersService, UsersRepository>();
+        CreateMap<UsersRepository, UsersService>();
+
     }
 }

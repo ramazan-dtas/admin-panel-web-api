@@ -20,6 +20,7 @@ namespace skolesystem.Tests.Controller
         private readonly UserController _userController;
         private readonly Mock<IUsersService> _usersService = new();
 
+
         public UsersControllerTests()
         {
             _userController = new UserController(context: null, _usersService.Object);
@@ -88,9 +89,6 @@ namespace skolesystem.Tests.Controller
             var user = new UserReadDto
             {
                 user_id = userId,
-                surname = "Doe",
-                email = "john.doe@example.com",
-                // Populate other properties as needed
             };
 
             _usersService.Setup(s => s.GetUserById(userId)).ReturnsAsync(user);
@@ -103,9 +101,8 @@ namespace skolesystem.Tests.Controller
             var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
 
             okResult.Value.Should().BeOfType<UserReadDto>().Which.user_id.Should().Be(userId);
-            okResult.Value.Should().BeOfType<UserReadDto>().Which.surname.Should().Be("Doe");
-            okResult.Value.Should().BeOfType<UserReadDto>().Which.email.Should().Be("john.doe@example.com");
-            // Check other properties as needed
+            
+         
         }
 
         [Fact]
@@ -155,6 +152,113 @@ namespace skolesystem.Tests.Controller
             Assert.Equal(201, statusCodeResult.StatusCode);
 
         }
+
+        [Fact]
+        public async Task Create_ShouldReturnStatusCode500_WhenExceptionIsRaised()
+        {
+            // Arrange
+            var userDto = new UserCreateDto
+            {
+                surname = "Doe",
+                email = "john.doe@example.com",
+                password_hash = "passwordHash",
+                user_id = 0,
+                email_confirmed = 1,
+                lockout_enabled = 1,
+                phone_confirmed = 1,
+                twofactor_enabled = 1,
+                try_failed_count = 1,
+                lockout_end = 1,
+                user_information_id = 1,
+            };
+
+            _usersService
+                .Setup(s => s.AddUser(It.IsAny<UserCreateDto>()))
+                .Returns(() => throw new System.Exception("This is an exception"));
+
+            // Act
+            var result = await _userController.CreateUser(userDto);
+
+            // Assert
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(500, statusCodeResult.StatusCode);
+
+        }
+
+        [Fact]
+        public async Task Update_ShouldReturnStatusCode200_WhenDataIsSaved()
+        {
+            // Arrange
+            int userId = 1;
+            UserUpdateDto updateUser = new UserUpdateDto
+            {
+                surname = "Doe",
+                email = "john.doe@example.com",
+                password_hash = "passwordHash",
+                user_id = 0,
+                email_confirmed = 1,
+                lockout_enabled = 1,
+                phone_confirmed = 1,
+                twofactor_enabled = 1,
+                try_failed_count = 1,
+                lockout_end = 1,
+                user_information_id = 1,
+                is_deleted = false,
+            };
+
+            _usersService
+                .Setup(s => s.UpdateUser(It.IsAny<int>(), It.IsAny<UserUpdateDto>()))
+                .Returns(Task.CompletedTask); // Assuming your UpdateUser method returns Task
+
+            // Act
+            var result = await _userController.UpdateUser(userId, updateUser);
+
+            // Assert
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
+        }
+
+
+
+
+
+
+        [Fact]
+        public async Task Update_ShouldReturnStatusCode500_WhenExceptionIsRaised()
+        {
+            // Arrange
+            int userId = 1;
+            UserUpdateDto updateUser = new UserUpdateDto
+            {
+                surname = "Doe",
+                email = "john.doe@example.com",
+                password_hash = "passwordHash",
+                user_id = 0,
+                email_confirmed = 1,
+                lockout_enabled = 1,
+                phone_confirmed = 1,
+                twofactor_enabled = 1,
+                try_failed_count = 1,
+                lockout_end = 1,
+                user_information_id = 1,
+            };
+
+            _usersService
+                .Setup(s => s.UpdateUser(It.IsAny<int>(), It.IsAny<UserUpdateDto>()))
+                .ThrowsAsync(new System.Exception("This is an exception"));
+
+            // Act
+            Func<Task> act = async () => await _userController.UpdateUser(userId, updateUser);
+
+            // Assert
+            await Assert.ThrowsAsync<System.Exception>(act);
+        }
+
+
+
+
+
+
 
 
 

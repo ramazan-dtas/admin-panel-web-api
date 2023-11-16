@@ -97,24 +97,35 @@ namespace skolesystem.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateUser(UserCreateDto userDto)
         {
-            var user = new Users
+            try
             {
-                surname = userDto.surname,
-                email = userDto.email,
-                password_hash = userDto.password_hash
+                var user = new Users
+                {
+                    surname = userDto.surname,
+                    email = userDto.email,
+                    password_hash = userDto.password_hash
+                };
 
-            };
+                _usersService.AddUser(userDto);
 
-            await _usersService.AddUser(userDto);
-
-            return CreatedAtAction(nameof(GetUserById), new { id = user.user_id }, userDto);
+                return CreatedAtAction(nameof(GetUserById), new { id = user.user_id }, userDto);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                return StatusCode(500, "An error occurred while processing the request.");
+            }
         }
 
+
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateUser(int id, UserUpdateDto userDto)
         {
             await _usersService.UpdateUser(id, userDto);
-            return NoContent();
+            return Ok();
         }
 
         [HttpDelete("{id}")]
