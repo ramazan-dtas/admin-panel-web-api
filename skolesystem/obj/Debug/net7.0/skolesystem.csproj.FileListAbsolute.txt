@@ -459,3 +459,4 @@ C:/Users/Frede/source/repos/admin-panel-web-api/skolesystem/bin/Debug/net7.0/Aut
 /Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/obj/Debug/net7.0/ref/skolesystem.dll
 =======
 >>>>>>> refs/remotes/origin/Frederik
+/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

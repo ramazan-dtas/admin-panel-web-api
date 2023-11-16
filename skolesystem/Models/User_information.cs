@@ -34,7 +34,7 @@ namespace skolesystem.Models
         public int user_id {get; set;}
 
 
-       
+
 
     }
 }

@@ -23,9 +23,8 @@ namespace skolesystem.DTOs
 
         public bool is_deleted { get; set; }
 
-        //public int gender_id { get; set; }
+        public int gender_id { get; set; }
 
-        //public int city_id { get; set; }
     }
 
 

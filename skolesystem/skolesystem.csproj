@@ -20,6 +20,21 @@
     <PackageReference Include="MySql.Data" Version="8.2.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Authorization\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Authorization\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Authorization\Role.cs">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Compile>
+  </ItemGroup>
 </Project>

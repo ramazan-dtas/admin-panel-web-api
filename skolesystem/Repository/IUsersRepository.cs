@@ -13,7 +13,9 @@ namespace skolesystem.Repository
         Task AddUser(Users user);
         Task UpdateUser(Users user);
         Task SoftDeleteUser(int id);
+        Task<Users> GetBySurname(string surname);
     }
+
 
     public class UsersRepository : IUsersRepository
     {
@@ -22,6 +24,11 @@ namespace skolesystem.Repository
         public UsersRepository(UsersDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<Users> GetBySurname(string surname)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.surname == surname);
         }
 
         public async Task<Users> GetById(int id)

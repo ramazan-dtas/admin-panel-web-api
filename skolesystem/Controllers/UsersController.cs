@@ -7,6 +7,10 @@ using skolesystem.Data;
 using skolesystem.DTOs; 
 using skolesystem.Models;
 using skolesystem.Service;
+using skolesystem.Authorization;
+using skolesystem.Migrations.UsersDb;
+using Users = skolesystem.Models.Users;
+using skolesystem.Repository;
 
 namespace skolesystem.Controllers
 {
@@ -16,13 +20,56 @@ namespace skolesystem.Controllers
     {
         private readonly UsersDbContext _context;
         private readonly IUsersService _usersService;
+        private readonly IUsersRepository _userRepository;
+        private readonly IJwtUtils _jwtUtils;
 
-        public UserController(UsersDbContext context, IUsersService usersService)
+        public UserController(UsersDbContext context, IUsersRepository usersRepository,IUsersService usersService, IJwtUtils jwtUtils)
         {
             _context = context;
             _usersService = usersService;
+            _userRepository = usersRepository;
+            _jwtUtils = jwtUtils;
         }
 
+        [AllowAnonymous]
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate(LoginRequest login)
+        {
+            try
+            {
+                Users user = await _userRepository.GetBySurname(login.surname);
+
+                if (user == null)
+                {
+                    return Unauthorized();
+                }
+
+                if (user.password_hash == login.password_hash)
+                {
+
+                    return Ok(new LoginResponse
+                    {
+
+                        user_id = user.user_id,
+                        surname = user.surname,
+                        email = user.email,
+                        is_deleted = user.is_deleted,
+                        role_id = user.role_id,
+                        Token = _jwtUtils.GenerateJwtToken(user)
+
+                    });
+                }
+
+                return Unauthorized();
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+
+        [Authorize(1)]
         [HttpGet]
         public async Task<IEnumerable<UserReadDto>> GetUsers()
         {
@@ -36,8 +83,8 @@ namespace skolesystem.Controllers
                     surname = user.surname,
                     email = user.email,
                     password_hash = user.password_hash,
-
-                    is_deleted = user.is_deleted
+                    is_deleted = user.is_deleted,
+                    role_id = user.role_id
                 });
             }
             return userDtos;
@@ -61,7 +108,8 @@ namespace skolesystem.Controllers
                 surname = user.surname,
                 email = user.email,
                 password_hash = user.password_hash,
-                is_deleted = user.is_deleted
+                is_deleted = user.is_deleted,
+                role_id = user.role_id
             };
 
             return Ok(userDto);
@@ -75,7 +123,8 @@ namespace skolesystem.Controllers
             {
                 surname = userDto.surname,
                 email = userDto.email,
-                password_hash = userDto.password_hash
+                password_hash = userDto.password_hash,
+                role_id = userDto.role_id
 
             };
 
@@ -96,6 +145,9 @@ namespace skolesystem.Controllers
  
             existingUser.surname = userDto.surname;
             existingUser.email = userDto.email;
+            existingUser.role_id = userDto.role_id;
+
+
 
 
             await _usersService.UpdateUser(existingUser);
@@ -118,6 +170,19 @@ namespace skolesystem.Controllers
             await _usersService.SoftDeleteUser(id);
 
             return NoContent();
+        }
+
+
+
+        public static UserReadDto MapUserTouserResponse(Users user)
+        {
+            return new UserReadDto
+            {
+                user_id = user.user_id,
+                surname = user.surname,
+                email = user.email,
+                role_id = user.role_id
+            };
         }
     }
 }

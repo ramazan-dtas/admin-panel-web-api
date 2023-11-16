@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using skolesystem.Data;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using skolesystem.Service;
 using skolesystem.Repository;
-using skolesystem.Models;
+using skolesystem.Authorization;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -17,7 +19,8 @@ builder.Services.AddCors(options =>
                       {
                           policy.WithOrigins("http://localhost:3000")
                           .AllowAnyHeader()  // Allow any headers
-                                .AllowAnyMethod(); // A
+                                .AllowAnyMethod()
+                          .AllowCredentials();
                       });
 });
 
@@ -28,9 +31,39 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
     });
 
+// used when injecting appSettings.Secret into jwtUtils
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "skolesystem", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+       {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 
 // Configure MySQL database connection
 builder.Services.AddDbContext<User_informationDbContext>(
@@ -42,6 +75,9 @@ builder.Services.AddDbContext<UsersDbContext>(
 builder.Services.AddDbContext<AbsenceDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 
+// Register JwtUtils
+
+builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 
 // Register your repository
 builder.Services.AddScoped<IUser_informationRepository, User_informationRepository>();
@@ -70,8 +106,11 @@ app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
 
-app.UseAuthorization();
+// JWT middleware setup, use this instead of default Authorization
+app.UseMiddleware<JwtMiddleware>();
+//app.UseAuthorization();
 
 app.MapControllers();
 
+//app.MapIdentityApi<IdentityUser>();
 app.Run();

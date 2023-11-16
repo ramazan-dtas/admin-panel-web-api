@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
 namespace skolesystem.Models
 {
     public class Users
@@ -9,8 +10,8 @@ namespace skolesystem.Models
         public string surname { get; set; }
         public string email { get; set; }
         public string password_hash { get; set; }
-
         public bool is_deleted { get; set; }
+        public int role_id { get; set; }
     }
 
 }

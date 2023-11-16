@@ -63,6 +63,7 @@ namespace skolesystem.Controllers
             brugerToUpdate.date_of_birth = brugerDto.date_of_birth;
             brugerToUpdate.address = brugerDto.address;
             brugerToUpdate.is_deleted = brugerDto.is_deleted;
+            brugerToUpdate.gender_id = brugerDto.gender_id;
 
 
             _context.Entry(brugerToUpdate).State = EntityState.Modified;
