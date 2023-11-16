@@ -7,6 +7,14 @@ using skolesystem.Service;
 using skolesystem.Repository;
 using skolesystem.Authorization;
 using Microsoft.OpenApi.Models;
+using skolesystem.Repository.SubjectRepository;
+using skolesystem.Repository.ClasseRepository;
+using skolesystem.Repository.AssignmentRepository;
+using skolesystem.Repository.UserSubmissionRepository;
+using skolesystem.Service.SubjectService;
+using skolesystem.Service.ClasseService;
+using skolesystem.Service.AssignmentService;
+using skolesystem.Service.UserSubmissionService;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -74,6 +82,14 @@ builder.Services.AddDbContext<UsersDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 builder.Services.AddDbContext<AbsenceDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
+builder.Services.AddDbContext<SubjectsDbContext>(
+    o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
+builder.Services.AddDbContext<ClasseDbContext>(
+    o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
+builder.Services.AddDbContext<AssignmentDbContext>(
+    o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
+builder.Services.AddDbContext<UserSubmissionDbContext>(
+    o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 
 // Register JwtUtils
 
@@ -84,12 +100,22 @@ builder.Services.AddScoped<IUser_informationRepository, User_informationReposito
 builder.Services.AddScoped<ISkemaRepository, SkemaRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IAbsenceRepository, AbsenceRepository>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<IClasseRepository, ClasseRepository>();
+builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
+builder.Services.AddScoped<IUserSubmissionRepository, UserSubmissionRepository>();
+
+
 // Register Service
 
 builder.Services.AddScoped<IUser_informationService, User_informationService>();
 builder.Services.AddScoped<ISkemaService, SkemaService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IAbsenceService, AbsenceService>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<IClasseService, ClasseService>();
+builder.Services.AddScoped<IAssignmentService, AssignmentService>();
+builder.Services.AddScoped<IUserSubmissionService, UserSubmissionService>();
 
 
 
