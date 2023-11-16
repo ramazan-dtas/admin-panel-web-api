@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace skolesystem.Service
 {
-    //Service for business logic
-    //public interface IUsersService
-    //{
-    //    Task<Users> GetUserById(int id);
-    //    Task<IEnumerable<Users>> GetAllUsers();
-    //    Task<IEnumerable<Users>> GetDeletedUsers();
-    //    Task AddUser(Users user);
-    //    Task UpdateUser(Users user);
-    //    Task SoftDeleteUser(int id);
-    //}
     public interface IUsersService
     {
         Task<UserReadDto> GetUserById(int id);
@@ -60,6 +50,8 @@ namespace skolesystem.Service
             var userEntity = _mapper.Map<Users>(user);
             await _usersRepository.AddUser(userEntity);
         }
+       
+
 
         public async Task UpdateUser(int id, UserUpdateDto userDto)
         {
@@ -67,15 +59,14 @@ namespace skolesystem.Service
 
             if (existingUser == null)
             {
-                // Handle the case where the user with the given id is not found.
-                // You can return an error response or throw an exception.
-                // For now, let's assume you return NotFound.
-                //return NotFound();
+                return;
             }
 
             // Update the properties of existingUser based on userDto
-            existingUser.surname = userDto.surname;
-            existingUser.email = userDto.email;
+            //existingUser.surname = userDto.surname;
+            //existingUser.email = userDto.email;
+            _mapper.Map(userDto, existingUser);
+
 
             // Save the changes
             await _usersRepository.UpdateUser(existingUser);

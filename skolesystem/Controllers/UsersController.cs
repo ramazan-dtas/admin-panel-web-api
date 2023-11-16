@@ -24,10 +24,19 @@ namespace skolesystem.Controllers
         }
 
         [HttpGet]
+
         public async Task<IEnumerable<UserReadDto>> GetUsers()
         {
             var users = await _usersService.GetAllUsers();
+
+            if (users == null)
+            {
+                // Handle the case where the service returns null (e.g., return an empty collection)
+                return Enumerable.Empty<UserReadDto>();
+            }
+
             var userDtos = new List<UserReadDto>();
+
             foreach (var user in users)
             {
                 userDtos.Add(new UserReadDto
@@ -46,6 +55,7 @@ namespace skolesystem.Controllers
                     is_deleted = user.is_deleted
                 });
             }
+
             return userDtos;
         }
 
@@ -82,6 +92,9 @@ namespace skolesystem.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateUser(UserCreateDto userDto)
         {
             var user = new Users

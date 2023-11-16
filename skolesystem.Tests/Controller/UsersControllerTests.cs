@@ -11,23 +11,24 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Moq;
+using Microsoft.AspNetCore.Http;
 
 namespace skolesystem.Tests.Controller
 {
     public class UsersControllerTests
     {
-        private readonly UserController _sut;
+        private readonly UserController _userController;
         private readonly Mock<IUsersService> _usersService = new();
 
         public UsersControllerTests()
         {
-            _sut = new UserController(context: null, _usersService.Object);
+            _userController = new UserController(context: null, _usersService.Object);
         }
 
         [Fact]
-        public async Task GetUsers_ShouldReturnStatusCode200_WhenDataExists()
+        public async Task GetUsers_ShouldReturnOk_WhenDataExists()
         {
-            // Arrange
+            // Arrange - Hvordan skal den se ud.
             List<UserReadDto> users = new List<UserReadDto>
     {
         new UserReadDto
@@ -35,31 +36,139 @@ namespace skolesystem.Tests.Controller
             user_id = 1,
             surname = "Doe",
             email = "john.doe@example.com",
-            // Populate other properties as needed
+            
         },
         new UserReadDto
         {
             user_id = 2,
             surname = "Smith",
             email = "jane.smith@example.com",
-            // Populate other properties as needed
+            
         }
     };
 
             _usersService.Setup(s => s.GetAllUsers()).Returns(Task.FromResult<IEnumerable<UserReadDto>>(users));
 
-            // Act
-            var result = await _sut.GetUsers();
+            // Act - Udfører test om at få alle Users.
+            var result = await _userController.GetUsers();
 
-            // Assert
+            // Assert - Kigger på resultatet.
             result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<UserReadDto>>();
             var userDtos = result.Should().BeAssignableTo<IEnumerable<UserReadDto>>().Subject;
 
-            // Add more specific assertions based on your use case
+
+            //I stedet for status code 200
+            result.Should().BeOfType<List<UserReadDto>>();
+
+
             userDtos.Should().HaveCount(2);
             userDtos.Should().ContainSingle(u => u.user_id == 1);
             userDtos.Should().ContainSingle(u => u.user_id == 2);
         }
+        [Fact]
+        public async Task GetUsers_ShouldReturnOk_WhenNoDataExists()
+        {
+            // Arrange
+            //Laver en tom liste
+            List<UserReadDto> users = new List<UserReadDto>();
+            _usersService.Setup(s => s.GetAllUsers()).Returns(Task.FromResult<IEnumerable<UserReadDto>>(users));
+
+            // Act
+            var result = await _userController.GetUsers();
+
+            // Assert
+            result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<UserReadDto>>();
+            var userDtos = result.Should().BeAssignableTo<IEnumerable<UserReadDto>>().Subject;
+        }
+        [Fact]
+        public async Task GetUserById_ShouldReturnOk_WhenUserExists()
+        {
+            // Arrange
+            int userId = 1;
+            var user = new UserReadDto
+            {
+                user_id = userId,
+                surname = "Doe",
+                email = "john.doe@example.com",
+                // Populate other properties as needed
+            };
+
+            _usersService.Setup(s => s.GetUserById(userId)).ReturnsAsync(user);
+
+            // Act
+            var result = await _userController.GetUserById(userId);
+
+            // Assert
+            result.Should().NotBeNull().And.BeAssignableTo<OkObjectResult>();
+            var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
+
+            okResult.Value.Should().BeOfType<UserReadDto>().Which.user_id.Should().Be(userId);
+            okResult.Value.Should().BeOfType<UserReadDto>().Which.surname.Should().Be("Doe");
+            okResult.Value.Should().BeOfType<UserReadDto>().Which.email.Should().Be("john.doe@example.com");
+            // Check other properties as needed
+        }
+
+        [Fact]
+        public async Task GetUserById_ShouldReturnNotFound_WhenUserDoesNotExist()
+        {
+            // Arrange
+            int userId = 1;
+            _usersService.Setup(s => s.GetUserById(userId)).ReturnsAsync((UserReadDto)null);
+
+            // Act
+            var result = await _userController.GetUserById(userId);
+
+            // Assert
+            result.Should().NotBeNull().And.BeAssignableTo<NotFoundResult>();
+        }
+
+        [Fact]
+        public async Task CreateUser_ShouldReturnStatusCode201_WhenDataIsCreated()
+        {
+            // Arrange
+            var userDto = new UserCreateDto
+            {
+                surname = "Doe",
+                email = "john.doe@example.com",
+                password_hash = "passwordHash",
+                user_id = 0,
+                email_confirmed = 1,
+                lockout_enabled = 1,
+                phone_confirmed = 1,
+                twofactor_enabled = 1,
+                try_failed_count = 1,
+                lockout_end = 1,
+                user_information_id = 1,
+            };
+
+            _usersService
+                .Setup(s => s.AddUser(It.IsAny<UserCreateDto>()))
+                .Returns(Task.FromResult(userDto));
+
+
+            // Act
+            var result = await _userController.CreateUser(userDto);
+
+
+            // Assert
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(201, statusCodeResult.StatusCode);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
