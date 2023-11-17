@@ -12,8 +12,14 @@ public class MappingProfiles : Profile
         CreateMap<Users, UserReadDto>();
         CreateMap<UserUpdateDto, Users>();
         CreateMap<Users, UserUpdateDto>();
+
+        
+        CreateMap<Absence, AbsenceReadDto>();
+        CreateMap<AbsenceCreateDto, Absence>();
+        CreateMap<AbsenceUpdateDto, Absence>();
+
+
         CreateMap<UsersService, UsersRepository>();
         CreateMap<UsersRepository, UsersService>();
-
     }
 }

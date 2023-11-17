@@ -61,10 +61,16 @@ namespace skolesystem.Tests.Controller
             //I stedet for status code 200
             result.Should().BeOfType<List<UserReadDto>>();
 
+            
+            //assert
+            var statusCodeResult = (IStatusCodeActionResult)result;
+            Assert.Equal(200, statusCodeResult.StatusCode);
+
 
             userDtos.Should().HaveCount(2);
             userDtos.Should().ContainSingle(u => u.user_id == 1);
             userDtos.Should().ContainSingle(u => u.user_id == 2);
+            
         }
         [Fact]
         public async Task GetUsers_ShouldReturnOk_WhenNoDataExists()

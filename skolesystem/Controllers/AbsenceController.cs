@@ -96,17 +96,14 @@ namespace skolesystem.Controllers
                 return NotFound();
             }
 
-            existingAbsence.user_id = absenceDto.user_id;
-            existingAbsence.teacher_id = absenceDto.teacher_id;
-            existingAbsence.class_id = absenceDto.class_id;
-            existingAbsence.absence_date = absenceDto.absence_date;
-            existingAbsence.reason = absenceDto.reason;
-            // Map other fields as needed
-
-            await _absenceService.UpdateAbsence(id, existingAbsence);
+            // Pass absenceDto directly to the UpdateAbsence method
+            await _absenceService.UpdateAbsence(id, absenceDto);
 
             return NoContent();
         }
+
+
+
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

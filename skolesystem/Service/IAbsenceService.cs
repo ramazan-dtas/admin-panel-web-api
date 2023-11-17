@@ -1,4 +1,5 @@
-﻿using skolesystem.DTOs;
+﻿using AutoMapper;
+using skolesystem.DTOs;
 using skolesystem.Models;
 using skolesystem.Repository;
 
@@ -7,27 +8,40 @@ namespace skolesystem.Service
     // Service for business logic
     public interface IAbsenceService
     {
-        Task<Absence> GetAbsenceById(int id);
+        Task<AbsenceReadDto> GetAbsenceById(int id);
         Task<IEnumerable<Absence>> GetAllAbsences();
         Task<IEnumerable<Absence>> GetDeletedAbsences();
         Task<int> CreateAbsence(Absence absenceDto);
-        Task UpdateAbsence(int id, Absence absenceDto);
+        Task UpdateAbsence(int id, AbsenceUpdateDto absenceDto);
         Task SoftDeleteAbsence(int id);
     }
 
     public class AbsenceService : IAbsenceService
     {
         private readonly IAbsenceRepository _absenceRepository;
+        private readonly IMapper _mapper;
 
-        public AbsenceService(IAbsenceRepository absenceRepository)
+        public AbsenceService(IAbsenceRepository absenceRepository, IMapper mapper)
         {
             _absenceRepository = absenceRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Absence> GetAbsenceById(int id)
+        public async Task<AbsenceReadDto> GetAbsenceById(int id)
         {
-            return await _absenceRepository.GetById(id);
+            var absence = await _absenceRepository.GetById(id);
+
+            if (absence == null)
+            {
+                return null; // or throw an exception or handle accordingly
+            }
+
+            // Use your mapping logic here to convert Absence to AbsenceReadDto
+            var absenceDto = _mapper.Map<AbsenceReadDto>(absence);
+
+            return absenceDto;
         }
+
 
         public async Task<IEnumerable<Absence>> GetAllAbsences()
         {
@@ -55,7 +69,7 @@ namespace skolesystem.Service
             return absence.absence_id;
         }
 
-        public async Task UpdateAbsence(int id, Absence absenceDto)
+        public async Task UpdateAbsence(int id, AbsenceUpdateDto absenceDto)
         {
             var existingAbsence = await _absenceRepository.GetById(id);
 
@@ -63,8 +77,6 @@ namespace skolesystem.Service
             {
                 throw new ArgumentException("Absence not found");
             }
-
-            // Map properties from AbsenceUpdateDto to the entity
             existingAbsence.user_id = absenceDto.user_id;
             existingAbsence.teacher_id = absenceDto.teacher_id;
             existingAbsence.class_id = absenceDto.class_id;
@@ -76,7 +88,15 @@ namespace skolesystem.Service
 
         public async Task SoftDeleteAbsence(int id)
         {
+            var absenceToDelete = await _absenceRepository.GetById(id);
+
+            if (absenceToDelete == null)
+            {
+                throw new ArgumentException("Absence not found");
+            }
+
             await _absenceRepository.SoftDeleteAbsence(id);
         }
+
     }
 }
