@@ -76,26 +76,35 @@ namespace skolesystem.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public async Task<IActionResult> CreateBruger(BrugerCreateDto brugerDto)
         {
-            var bruger = new Bruger
+            try
             {
-                name = brugerDto.name,
-                last_name = brugerDto.last_name,
-                phone = brugerDto.phone,
-                date_of_birth = brugerDto.date_of_birth,
-                address = brugerDto.address,
-                is_deleted = brugerDto.is_deleted,
-                gender_id = brugerDto.gender_id,
-                city_id = brugerDto.city_id,
-                user_id = brugerDto.user_id
-                
-            };
+                var bruger = new Bruger
+                {
+                    name = brugerDto.name,
+                    last_name = brugerDto.last_name,
+                    phone = brugerDto.phone,
+                    date_of_birth = brugerDto.date_of_birth,
+                    address = brugerDto.address,
+                    is_deleted = brugerDto.is_deleted,
+                    gender_id = brugerDto.gender_id,
+                    city_id = brugerDto.city_id,
+                    user_id = brugerDto.user_id
+                };
 
-            await _brugerService.AddBruger(bruger);
+                await _brugerService.AddBruger(bruger);
 
-            return CreatedAtAction(nameof(GetBrugerById), new { id = bruger.user_information_id }, brugerDto);
+                return CreatedAtAction(nameof(GetBrugerById), new { id = bruger.user_information_id }, brugerDto);
+            }
+            catch (ArgumentException ex)
+            {
+                // User with the specified ID already exists
+                return Conflict(ex.Message);
+            }
         }
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateBruger(int id, BrugerUpdateDto brugerDto)
@@ -132,5 +141,9 @@ namespace skolesystem.Controllers
 
             return NoContent();
         }
+
+
+
+
     }
 }

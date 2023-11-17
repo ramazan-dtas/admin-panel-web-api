@@ -21,5 +21,9 @@ public class MappingProfiles : Profile
 
         CreateMap<UsersService, UsersRepository>();
         CreateMap<UsersRepository, UsersService>();
+
+        CreateMap<BrugerService, BrugerRepository>();
+        CreateMap<BrugerRepository, BrugerService>();
+
     }
 }
