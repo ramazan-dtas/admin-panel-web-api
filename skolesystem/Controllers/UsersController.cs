@@ -115,6 +115,7 @@ namespace skolesystem.Controllers
             return Ok(userDto);
         }
 
+        [Authorize(1)]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateUser(UserCreateDto userDto)
