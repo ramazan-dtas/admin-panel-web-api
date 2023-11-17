@@ -13,6 +13,7 @@ namespace skolesystem.Models
         public bool is_deleted { get; set; }
         public int role_id { get; set; }
         public List<UserSubmission> userSubmissions { get; set; }
+        public List<Enrollments> enrollments { get; set; }
     }
 
 }

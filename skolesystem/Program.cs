@@ -15,6 +15,9 @@ using skolesystem.Service.SubjectService;
 using skolesystem.Service.ClasseService;
 using skolesystem.Service.AssignmentService;
 using skolesystem.Service.UserSubmissionService;
+using skolesystem.Repository.EnrollmentRepository;
+using skolesystem.Repository.EnrollmentsRepository;
+using skolesystem.Service.EnrollmentService;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -90,6 +93,8 @@ builder.Services.AddDbContext<AssignmentDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 builder.Services.AddDbContext<UserSubmissionDbContext>(
     o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
+builder.Services.AddDbContext<EnrollmentDbContext>(
+    o => o.UseMySql(builder.Configuration.GetConnectionString("MySQL"), new MySqlServerVersion(new Version(8, 0, 35))));
 
 // Register JwtUtils
 
@@ -104,6 +109,7 @@ builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 builder.Services.AddScoped<IClasseRepository, ClasseRepository>();
 builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
 builder.Services.AddScoped<IUserSubmissionRepository, UserSubmissionRepository>();
+builder.Services.AddScoped<IEnrollmentRepository, EnrollmentsRepository>();
 
 
 // Register Service
@@ -116,6 +122,7 @@ builder.Services.AddScoped<ISubjectService, SubjectService>();
 builder.Services.AddScoped<IClasseService, ClasseService>();
 builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 builder.Services.AddScoped<IUserSubmissionService, UserSubmissionService>();
+builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 
 
 

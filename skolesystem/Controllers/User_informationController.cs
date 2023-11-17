@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using skolesystem.Authorization;
 using skolesystem.Data;
 using skolesystem.DTOs;
 using skolesystem.Models;
@@ -18,6 +19,15 @@ namespace skolesystem.Controllers
         public async Task<IEnumerable<User_information>> Get()
         {
             return await _context.User_information.ToListAsync();
+        }
+
+        //[Authorize(2)]
+        [HttpGet("students")]
+        public async Task<IEnumerable<User_information>> GetAllStudents()
+        {
+            return await _context.User_information.Where(b => b.is_deleted == false && b.user_id == 3).ToListAsync();
+
+
         }
 
         [HttpGet("{id}")]

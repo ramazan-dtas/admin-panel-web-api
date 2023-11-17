@@ -15,13 +15,14 @@ namespace skolesystem.Models
         public string class_name { get; set; }
 
         [Required]
-        public int is_deleted { get; set; }
+        public bool is_deleted { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(255)")]
         public string location { get; set; }
 
         public List<Assignment> assignments { get; set; }
+        public List<Enrollments> enrollments { get; set; }
 
     }
 }

@@ -9,6 +9,7 @@ public interface IUser_informationRepository
 {
     Task<User_information> GetById(int id);
     Task<IEnumerable<User_information>> GetAll();
+    Task<IEnumerable<User_information>> GetAllStudents();
     Task<IEnumerable<User_information>> GetDeletedBrugers();
     Task AddBruger(User_information bruger);
     Task UpdateBruger(User_information bruger);
@@ -32,6 +33,11 @@ public class User_informationRepository : IUser_informationRepository
     public async Task<IEnumerable<User_information>> GetAll()
     {
         return await _context.User_information.ToListAsync();
+    }
+
+    public async Task<IEnumerable<User_information>> GetAllStudents()
+    {
+        return await _context.User_information.Where(b => b.is_deleted == false && b.user_id == 3 ).ToListAsync();
     }
 
     public async Task<IEnumerable<User_information>> GetDeletedBrugers()

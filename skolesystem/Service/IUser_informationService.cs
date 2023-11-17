@@ -5,6 +5,7 @@ public interface IUser_informationService
 {
     Task<User_information> GetBrugerById(int id);
     Task<IEnumerable<User_information>> GetAllBrugers();
+    Task<IEnumerable<User_information>> GetAllStudents();
     Task<IEnumerable<User_information>> GetDeletedBrugers();
     Task AddBruger(User_information bruger);
     Task UpdateBruger(User_information bruger);
@@ -30,6 +31,10 @@ public class User_informationService : IUser_informationService
         return await _brugerRepository.GetAll();
     }
 
+    public async Task<IEnumerable<User_information>> GetAllStudents()
+    {
+        return await _brugerRepository.GetAllStudents();
+    }
 
     public async Task<IEnumerable<User_information>> GetDeletedBrugers()
     {
