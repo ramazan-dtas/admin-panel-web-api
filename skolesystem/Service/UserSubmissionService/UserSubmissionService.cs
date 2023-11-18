@@ -46,9 +46,52 @@ namespace skolesystem.Service.UserSubmissionService
             }).ToList();
         }
 
-        public Task<List<UserSubmission>> GetAllUserSubmissionsByAssignment(int assignmentId)
+        public async Task<List<UserSubmissionResponse>> GetAllUserSubmissionsByAssignment(int assignmentId)
         {
-            return _UserSubmissionRepository.GetUserSubmissionsByAssignment(assignmentId);
+            List<UserSubmission> UserSubmission = await _UserSubmissionRepository.GetAllUserSubmissionsByAssignment(assignmentId);
+            return UserSubmission.Select(a => new UserSubmissionResponse
+            {
+                userSubmission_Id = a.submission_id,
+                userSubmission_text = a.submission_text,
+                userSubmission_date = a.submission_date,
+                userSubmissionAssignmentResponse = new UserSubmissionAssignmentResponse
+                {
+                    opgave_Id = a.Assignment.assignment_id,
+                    opgave_Description = a.Assignment.assignment_description,
+                    opgave_Deadline = a.Assignment.assignment_deadline,
+                    is_Deleted = a.Assignment.is_Deleted
+                },
+                userSubmissionUserResponse = new UserSubmissionUserResponse
+                {
+                    user_id = a.User.user_id,
+                    surname = a.User.surname,
+                    email = a.User.email
+                }
+            }).ToList();
+        }
+        public async Task<List<UserSubmissionResponse>> GetAllUserSubmissionsbyUser(int userId)
+        {
+            List<UserSubmission> UserSubmission = await _UserSubmissionRepository.GetUserSubmissionsByUsers(userId);
+            return UserSubmission.Select(a => new UserSubmissionResponse
+            {
+                userSubmission_Id = a.submission_id,
+                userSubmission_text = a.submission_text,
+                userSubmission_date = a.submission_date,
+                userSubmissionUserResponse = new UserSubmissionUserResponse
+                {
+                    user_id = a.User.user_id,
+                    surname = a.User.surname,
+                    email = a.User.email
+                },
+                userSubmissionAssignmentResponse = new UserSubmissionAssignmentResponse
+                {
+                    opgave_Id = a.Assignment.assignment_id,
+                    opgave_Description = a.Assignment.assignment_description,
+                    opgave_Deadline = a.Assignment.assignment_deadline,
+                    is_Deleted = a.Assignment.is_Deleted
+                }
+                
+            }).ToList();
         }
 
         public async Task<UserSubmissionResponse> GetById(int UserSubmissionId)

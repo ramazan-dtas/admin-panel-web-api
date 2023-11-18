@@ -39,14 +39,14 @@ namespace skolesystem.Repository.UserSubmissionRepository
             return await _context.user_submission.Include(a => a.Assignment).Include(u => u.User).ToListAsync();
         }
 
-        public async Task<List<UserSubmission>> GetUserSubmissionsByAssignment(int assignmentId)
+        public async Task<List<UserSubmission>> GetAllUserSubmissionsByAssignment(int assignmentId)
         {
-            return await _context.user_submission.Where(a => a.submission_id == assignmentId).Include(a => a.Assignment).ToListAsync();
+            return await _context.user_submission.Where(a => a.submission_id == assignmentId).Include(a => a.Assignment).Include(a=> a.User).ToListAsync();
         }
 
        public async Task<List<UserSubmission>> GetUserSubmissionsByUsers(int usersId)
         {
-            return await _context.user_submission.Where(a => a.submission_id == usersId).Include(a => a.User).ToListAsync();
+            return await _context.user_submission.Where(a => a.submission_id == usersId).Include(a => a.User).Include(a=> a.Assignment).ToListAsync();
         }
 
         public async Task<UserSubmission> SelectUserSubmissionById(int UserSubmissionId)

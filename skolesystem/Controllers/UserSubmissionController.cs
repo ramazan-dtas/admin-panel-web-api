@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using skolesystem.DTOs.Enrollment.Response;
 using skolesystem.DTOs.UserSubmission.Request;
 using skolesystem.DTOs.UserSubmission.Response;
 using skolesystem.Service.UserSubmissionService;
@@ -38,6 +39,64 @@ namespace skolesystem.Controllers
                 }
 
                 return Ok(UserSubmissions);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpGet("ByAssignment/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllEnrollmentsByAssignment([FromRoute] int id)
+        {
+            try
+            {
+                List<UserSubmissionResponse> assignments = await _UserSubmissionService.GetAllUserSubmissionsByAssignment(id);
+
+                if (assignments == null)
+                {
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (assignments.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(assignments);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpGet("ByUser/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllEnrollmentsByUser([FromRoute] int id)
+        {
+            try
+            {
+                List<UserSubmissionResponse> users = await _UserSubmissionService.GetAllUserSubmissionsbyUser(id);
+
+                if (users == null)
+                {
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (users.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(users);
 
             }
             catch (Exception ex)

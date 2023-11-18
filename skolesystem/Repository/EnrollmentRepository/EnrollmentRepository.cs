@@ -47,7 +47,7 @@ namespace skolesystem.Repository.EnrollmentsRepository
 
         public async Task<List<Enrollments>> GetAllEnrollmentsByUser(int userId)
         {
-            return await _context.enrollments.Where(a => a.user_id == userId && a.User.is_deleted == false).Include(a => a.Classe).ToListAsync();
+            return await _context.enrollments.Where(a => a.user_id == userId && a.User.is_deleted == false).Include(a => a.Classe).Include(a => a.User).ToListAsync();
         }
 
         public async Task<Enrollments?> SelectEnrollmentsById(int EnrollmentsId)

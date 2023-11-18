@@ -1,82 +1,43 @@
 ﻿<Properties StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https" GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.Workbench ActiveDocument="skolesystem/Controllers/EnrollmentController.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.skolesystem.test FirstBuild="True" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="skolesystem/Repository/EnrollmentRepository/EnrollmentRepository.cs">
     <Files>
-      <File FileName="skolesystem/DTOs/UserReadDto.cs" />
-      <File FileName="skolesystem/appsettings.json" Line="18" Column="1" />
-      <File FileName="skolesystem/DTOs/SkemaCreateDTO.cs" />
-      <File FileName="skolesystem/DTOs/SkemaReadDto.cs" />
-      <File FileName="skolesystem/DTOs/SkemaUpdateDTO.cs" />
-      <File FileName="skolesystem/Models/Skema.cs" />
-      <File FileName="skolesystem/Repository/ISkemaRepository.cs" />
-      <File FileName="skolesystem/Data/SkemaDbContext.cs" />
-      <File FileName="skolesystem/Controllers/SkemaController.cs" />
-      <File FileName="skolesystem/DTOs/UserUpdateDto.cs" />
-      <File FileName="skolesystem/Models/Users.cs" />
-      <File FileName="skolesystem/appsettings.Development.json" />
-      <File FileName="skolesystem/DTOs/UserCreateDto.cs" />
-      <File FileName="skolesystem/Controllers/UsersController.cs" />
-      <File FileName="skolesystem/Data/UsersDbContext.cs" />
-      <File FileName="skolesystem/DTOs/User_informationReadDto.cs" />
-      <File FileName="skolesystem/Program.cs" Line="125" Column="69" />
-      <File FileName="skolesystem/Data/User_informationDbContext.cs" />
-      <File FileName="skolesystem/Service/IUser_informationService.cs" />
-      <File FileName="skolesystem/Migrations/20231112092604_User_informationMigration.cs" />
-      <File FileName="skolesystem/Migrations/User_informationDbContextModelSnapshot.cs" />
-      <File FileName="skolesystem/Migrations/20231112092604_User_informationMigration.Designer.cs" />
-      <File FileName="skolesystem/Models/Absence.cs" />
-      <File FileName="skolesystem/Repository/IAbsenceRepository.cs" />
-      <File FileName="skolesystem/Service/IAbsenceService.cs" />
-      <File FileName="skolesystem/Service/ISkemaService.cs" />
-      <File FileName="skolesystem/Models/User_information.cs" />
-      <File FileName="skolesystem/Repository/IUser_informationRepository.cs" />
-      <File FileName="skolesystem/Service/IUsersService.cs" />
-      <File FileName="skolesystem/Repository/IUsersRepository.cs" />
-      <File FileName="skolesystem/DTOs/User_informationUpdateDTO.cs" />
-      <File FileName="skolesystem/DTOs/User_informationCreateDTO.cs" />
-      <File FileName="skolesystem/Data/AbsenceDbContext.cs" />
-      <File FileName="skolesystem/Controllers/User_informationController.cs" />
-      <File FileName="skolesystem/DTOs/AbsenceUpdateDto.cs" />
-      <File FileName="skolesystem/DTOs/AbsenceReadDto.cs" />
-      <File FileName="skolesystem/DTOs/AbsenceCreateDto.cs" />
-      <File FileName="skolesystem/Authorization/AllowAnonymousAttribute.cs" />
-      <File FileName="skolesystem/Controllers/AbsenceController.cs" />
-      <File FileName="skolesystem/Authorization/JwtMiddleware.cs" />
-      <File FileName="skolesystem/Authorization/AppSettings.cs" />
-      <File FileName="skolesystem/DTOs/LoginResponse.cs" />
-      <File FileName="skolesystem/Data/UserSubmissionDbContext.cs" />
-      <File FileName="skolesystem/Data/SubjectDbContext.cs" />
-      <File FileName="skolesystem/Data/ClasseDbContext.cs" />
-      <File FileName="skolesystem/Data/AssignmentDbContext.cs" />
-      <File FileName="skolesystem/DTOs/UserSubmission/Request/NewUserSubmission.cs" />
-      <File FileName="skolesystem/DTOs/UserSubmission/Request/UpdateUserSubmission.cs" />
-      <File FileName="skolesystem/Controllers/AssignmentController.cs" />
-      <File FileName="skolesystem/Controllers/ClasseController.cs" />
-      <File FileName="skolesystem/DTOs/Classe/Response/ClasseResponse.cs" />
-      <File FileName="skolesystem/Models/Subject.cs" />
-      <File FileName="skolesystem/Controllers/SubjectController.cs" />
-      <File FileName="skolesystem/Repository/SubjectRepository/SubjectRepository.cs" />
-      <File FileName="skolesystem/Repository/AssignmentRepository/AssignmentRepository.cs" />
-      <File FileName="skolesystem/Models/UserSubmission.cs" />
-      <File FileName="skolesystem/Repository/UserSubmissionRepository/UserSubmissionRepository.cs" />
-      <File FileName="skolesystem/Controllers/UserSubmissionController.cs" />
-      <File FileName="skolesystem/Models/Assignment.cs" />
-      <File FileName="skolesystem/DTOs/Subject/Response/SubjectResponse.cs" />
-      <File FileName="skolesystem.test/UnitTest1.cs" Line="1" Column="1" />
-      <File FileName="skolesystem.test/Controller/ClasseControllerTest.cs" Line="19" Column="10" />
-      <File FileName="skolesystem.test/Controller/AssignmentControllerTest.cs" Line="300" Column="10" />
-      <File FileName="skolesystem.test/Controller/UserSubmissionControllerTest.cs" Line="1" Column="1" />
-      <File FileName="skolesystem/Controllers/EnrollmentController.cs" Line="24" Column="47" />
+      <File FileName="skolesystem/Controllers/AssignmentController.cs" Line="110" Column="40" />
+      <File FileName="skolesystem/Service/AssignmentService/AssignmentService.cs" Line="91" Column="62" />
+      <File FileName="skolesystem/Models/Classe.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Models/Enrollments.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Repository/AssignmentRepository/AssignmentRepository.cs" Line="24" Column="14" />
+      <File FileName="skolesystem/Repository/EnrollmentRepository/EnrollmentRepository.cs" Line="50" Column="152" />
+      <File FileName="skolesystem/Service/EnrollmentService/EnrollmentService.cs" Line="66" Column="18" />
+      <File FileName="skolesystem/Controllers/EnrollmentController.cs" Line="110" Column="14" />
+      <File FileName="skolesystem/DTOs/Enrollment/Response/EnrollmentResponse.cs" Line="8" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="skolesystem" expanded="True">
-            <Node name="skolesystem" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="EnrollmentController.cs" selected="True" />
+          <Node name="skolesystem">
+            <Node name="skolesystem">
+              <Node name="Controllers" expanded="True" />
+              <Node name="DTOs" expanded="True">
+                <Node name="Enrollment" expanded="True">
+                  <Node name="Response" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Repository">
+                <Node name="AssignmentRepository" expanded="True" />
+                <Node name="EnrollmentRepository">
+                  <Node name="EnrollmentRepository.cs" selected="True" />
+                </Node>
               </Node>
             </Node>
-            <Node name="skolesystem.test">
+            <Node name="skolesystem.test" expanded="True">
               <Node name="Controller" expanded="True" />
             </Node>
           </Node>
@@ -84,12 +45,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.skolesystem PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.skolesystem.test FirstBuild="True" />
 </Properties>

@@ -6,7 +6,7 @@ namespace skolesystem.Repository.UserSubmissionRepository
 	public interface IUserSubmissionRepository
 	{
         Task<List<UserSubmission>> SelectAllUserSubmissions();
-        Task<List<UserSubmission>> GetUserSubmissionsByAssignment(int userSubmissionId);
+        Task<List<UserSubmission>> GetAllUserSubmissionsByAssignment(int userSubmissionId);
         Task<List<UserSubmission>> GetUserSubmissionsByUsers(int userSubmissionId);
         Task<UserSubmission> SelectUserSubmissionById(int userSubmissionId);
         Task<UserSubmission> InsertNewUserSubmission(UserSubmission userSubmission);

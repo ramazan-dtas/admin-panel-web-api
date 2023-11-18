@@ -8,10 +8,11 @@ namespace skolesystem.Service.UserSubmissionService
 	public interface IUserSubmissionService
 	{
         Task<List<UserSubmissionResponse>> GetAll();
+        Task<List<UserSubmissionResponse>> GetAllUserSubmissionsByAssignment(int assignmentId);
+        Task<List<UserSubmissionResponse>> GetAllUserSubmissionsbyUser(int userId);
         Task<UserSubmissionResponse> GetById(int UserSubmissionId);
         Task<UserSubmissionResponse> Create(NewUserSubmission newUserSubmission);
         Task<UserSubmissionResponse> Update(int UserSubmissionsId, UpdateUserSubmission updateUserSubmission);
-        Task<List<UserSubmission>> GetAllUserSubmissionsByAssignment(int categoryId);
 
         Task<bool> Delete(int UserSubmissionId);
     }

@@ -57,6 +57,12 @@ namespace skolesystem.Service.EnrollmentService
                     Id = a.Classe.class_id,
                     className = a.Classe.class_name,
                     location = a.Classe.location
+                },
+                enrollmentUserResponse = new EnrollmentUserResponse
+                {
+                    user_id = a.User.user_id,
+                    surname = a.User.surname,
+                    email = a.User.email
                 }
             }).ToList();
 
