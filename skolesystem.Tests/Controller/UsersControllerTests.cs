@@ -29,7 +29,7 @@ namespace skolesystem.Tests.Controller
         [Fact]
         public async Task GetUsers_ShouldReturnOk_WhenDataExists()
         {
-            // Arrange - Hvordan skal den se ud.
+            // Arrange
             List<UserReadDto> users = new List<UserReadDto>
     {
         new UserReadDto
@@ -37,41 +37,31 @@ namespace skolesystem.Tests.Controller
             user_id = 1,
             surname = "Doe",
             email = "john.doe@example.com",
-            
         },
         new UserReadDto
         {
             user_id = 2,
             surname = "Smith",
             email = "jane.smith@example.com",
-            
         }
     };
 
-            _usersService.Setup(s => s.GetAllUsers()).Returns(Task.FromResult<IEnumerable<UserReadDto>>(users));
+            _usersService.Setup(s => s.GetAllUsers()).ReturnsAsync(users);
 
-            // Act - Udfører test om at få alle Users.
+            // Act
             var result = await _userController.GetUsers();
 
-            // Assert - Kigger på resultatet.
+            // Assert
             result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<UserReadDto>>();
-            var userDtos = result.Should().BeAssignableTo<IEnumerable<UserReadDto>>().Subject;
+            var userDtos = result.Should().BeAssignableTo<List<UserReadDto>>().Subject;
 
-
-            //I stedet for status code 200
-            result.Should().BeOfType<List<UserReadDto>>();
-
-            
-            //assert
-            var statusCodeResult = (IStatusCodeActionResult)result;
-            Assert.Equal(200, statusCodeResult.StatusCode);
-
-
+            // Assert
             userDtos.Should().HaveCount(2);
             userDtos.Should().ContainSingle(u => u.user_id == 1);
             userDtos.Should().ContainSingle(u => u.user_id == 2);
-            
         }
+
+
         [Fact]
         public async Task GetUsers_ShouldReturnOk_WhenNoDataExists()
         {

@@ -36,10 +36,10 @@ namespace skolesystem.Tests.Controller
         {
             // Arrange
             var absences = new List<Absence>
-        {
-            new Absence { absence_id = 1, user_id = 1, teacher_id = 1, class_id = 1, absence_date = DateTime.Now, reason = "Reason 1", is_deleted = false },
-            new Absence { absence_id = 2, user_id = 2, teacher_id = 2, class_id = 2, absence_date = DateTime.Now, reason = "Reason 2", is_deleted = false },
-        };
+    {
+        new Absence { absence_id = 1, user_id = 1, teacher_id = 1, class_id = 1, absence_date = DateTime.Now, reason = "Reason 1", is_deleted = false },
+        new Absence { absence_id = 2, user_id = 2, teacher_id = 2, class_id = 2, absence_date = DateTime.Now, reason = "Reason 2", is_deleted = false },
+    };
 
             _absenceRepositoryMock.Setup(repo => repo.GetAll()).ReturnsAsync(absences);
 
@@ -47,10 +47,10 @@ namespace skolesystem.Tests.Controller
             var result = await _absenceService.GetAllAbsences();
 
             // Assert
-            result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<Absence>>();
+            result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<AbsenceReadDto>>();
             var absenceList = result.ToList();
             absenceList.Should().HaveCount(2);
-
+            absenceList.Should().OnlyContain(a => a is AbsenceReadDto);
         }
 
         [Fact]
@@ -63,8 +63,9 @@ namespace skolesystem.Tests.Controller
             var result = await _absenceService.GetAllAbsences();
 
             // Assert
-            result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<Absence>>().And.BeEmpty();
+            result.Should().NotBeNull().And.BeAssignableTo<IEnumerable<AbsenceReadDto>>().And.BeEmpty();
         }
+
 
         [Fact]
         public async Task GetAbsenceById_ShouldReturnAbsenceReadDto_WhenAbsenceExists()
@@ -101,11 +102,12 @@ namespace skolesystem.Tests.Controller
             result.Should().BeNull();
         }
 
+
         [Fact]
-        public async Task CreateAbsence_ShouldReturnAbsenceId_WhenCreateAbsenceExists()
+        public async Task CreateAbsence_ShouldReturnAbsenceReadDto_WhenCreateAbsenceExists()
         {
             // Arrange
-            var absenceDto = new Absence
+            var absenceCreateDto = new AbsenceCreateDto
             {
                 user_id = 1,
                 teacher_id = 1,
@@ -124,17 +126,23 @@ namespace skolesystem.Tests.Controller
                 });
 
             // Act
-            var result = await _absenceService.CreateAbsence(absenceDto);
+            var result = await _absenceService.CreateAbsence(absenceCreateDto);
 
             // Assert
-            result.Should().Be(expectedAbsenceId);
+            result.Should().NotBeNull().And.BeAssignableTo<AbsenceReadDto>();
+            var resultDto = (AbsenceReadDto)result;
+            resultDto.absence_id.Should().Be(expectedAbsenceId);
+            resultDto.user_id.Should().Be(absenceCreateDto.user_id);
+            // Include other assertions as needed based on your mapping logic
         }
+
+
 
         [Fact]
         public async Task CreateAbsence_ShouldThrowException_WhenNoCreateAbsenceExist()
         {
             // Arrange
-            var absenceDto = new Absence
+            var absenceCreateDto = new AbsenceCreateDto
             {
                 user_id = 1,
                 teacher_id = 1,
@@ -147,8 +155,9 @@ namespace skolesystem.Tests.Controller
                 .ThrowsAsync(new Exception("Failed to create absence"));
 
             // Act and Assert
-            await Assert.ThrowsAsync<Exception>(() => _absenceService.CreateAbsence(absenceDto));
+            await Assert.ThrowsAsync<Exception>(() => _absenceService.CreateAbsence(absenceCreateDto));
         }
+
 
         [Fact]
         public async Task UpdateAbsence_ShouldReturnNoContent_WhenUpdateAbsenceExists()

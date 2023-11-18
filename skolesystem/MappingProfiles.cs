@@ -17,13 +17,16 @@ public class MappingProfiles : Profile
         CreateMap<Absence, AbsenceReadDto>();
         CreateMap<AbsenceCreateDto, Absence>();
         CreateMap<AbsenceUpdateDto, Absence>();
-
+        CreateMap<AbsenceReadDto, Absence>();
 
         CreateMap<UsersService, UsersRepository>();
         CreateMap<UsersRepository, UsersService>();
 
         CreateMap<BrugerService, BrugerRepository>();
         CreateMap<BrugerRepository, BrugerService>();
+
+        
+
 
     }
 }
