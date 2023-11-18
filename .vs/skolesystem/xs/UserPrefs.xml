@@ -1,5 +1,4 @@
-﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+﻿<Properties StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workbench ActiveDocument="skolesystem/Program.cs">
     <Files>
       <File FileName="skolesystem/DTOs/UserReadDto.cs" Line="1" Column="1" />
@@ -96,10 +95,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.skolesystem PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.skolesystem PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.skolesystem.test FirstBuild="True" />
 </Properties>

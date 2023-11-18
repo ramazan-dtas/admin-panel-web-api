@@ -1,4 +1,4 @@
-﻿namespace skolesystem.test;
+namespace skolesystem.test;
 
 public class UnitTest1
 {

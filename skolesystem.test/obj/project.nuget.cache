@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ny6MkjxDKapsbTCoqIke1jYyXTHfU9T4bgYDq7OFAXZ5Vpmb+z4JecLdIW4TdaR4W/ADU38zdYqqc3Fg9UvgKQ==",
+  "dgSpecHash": "u7UNiMLYN0Aa8Q8SNM+UmYsK9SiCkKzfqhJv1u6ks8v/nmwS9aPtIaNVeYuU0MgfcauQDpNZASthOwH30i4Vxg==",
   "success": true,
-  "projectFilePath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem.test/skolesystem.test.csproj",
+  "projectFilePath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/skolesystem.test.csproj",
   "expectedPackageFiles": [
     "/Users/ramazandtas12gmail.com/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",

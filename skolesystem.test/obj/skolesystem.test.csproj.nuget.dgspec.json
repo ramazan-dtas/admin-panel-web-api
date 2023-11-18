@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem.test/skolesystem.test.csproj": {}
+    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/skolesystem.test.csproj": {}
   },
   "projects": {
-    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem.test/skolesystem.test.csproj": {
+    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/skolesystem.test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem.test/skolesystem.test.csproj",
+        "projectUniqueName": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/skolesystem.test.csproj",
         "projectName": "skolesystem.test",
-        "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem.test/skolesystem.test.csproj",
+        "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/skolesystem.test.csproj",
         "packagesPath": "/Users/ramazandtas12gmail.com/.nuget/packages/",
-        "outputPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem.test/obj/",
+        "outputPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ramazandtas12gmail.com/.nuget/NuGet/NuGet.Config"
@@ -27,8 +27,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem/skolesystem.csproj": {
-                "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem/skolesystem.csproj"
+              "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj": {
+                "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj"
               }
             }
           }
@@ -88,14 +88,14 @@
         }
       }
     },
-    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem/skolesystem.csproj": {
+    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem/skolesystem.csproj",
+        "projectUniqueName": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj",
         "projectName": "skolesystem",
-        "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem/skolesystem.csproj",
+        "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj",
         "packagesPath": "/Users/ramazandtas12gmail.com/.nuget/packages/",
-        "outputPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/nysvend/skolesystem/obj/",
+        "outputPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/ramazandtas12gmail.com/.nuget/NuGet/NuGet.Config"

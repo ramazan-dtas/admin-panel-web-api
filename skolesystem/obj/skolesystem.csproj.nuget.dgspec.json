@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj": {}
+    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj": {}
   },
   "projects": {
-    "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj": {
+    "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj",
+        "projectUniqueName": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj",
         "projectName": "skolesystem",
-        "projectPath": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/skolesystem.csproj",
-        "packagesPath": "/Users/paullinecarls/.nuget/packages/",
-        "outputPath": "/Users/paullinecarls/Developer/skolesystem-web/admin-panel-web-api/skolesystem/obj/",
+        "projectPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj",
+        "packagesPath": "/Users/ramazandtas12gmail.com/.nuget/packages/",
+        "outputPath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/paullinecarls/.nuget/NuGet/NuGet.Config"
+          "/Users/ramazandtas12gmail.com/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -101,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
         }
       }
     }
