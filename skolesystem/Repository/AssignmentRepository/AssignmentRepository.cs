@@ -41,7 +41,7 @@ namespace skolesystem.Repository.AssignmentRepository
                 .FirstOrDefaultAsync(assignment => assignment.assignment_id == assignmentId);
             if (updateAssignment != null)
             {
-                updateAssignment.Classe = assignment.Classe;
+                updateAssignment.class_id = assignment.class_id;
                 updateAssignment.assignment_description = assignment.assignment_description;
                 updateAssignment.assignment_deadline = assignment.assignment_deadline;
 

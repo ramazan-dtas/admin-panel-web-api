@@ -84,7 +84,12 @@ namespace skolesystem.Service.AssignmentService
             {
                 assignment_id = assignment.assignment_id,
                 assignment_deadline = assignment.assignment_deadline,
-                assignment_description = assignment.assignment_description
+                assignment_description = assignment.assignment_description,
+                Classe = new AssignmentClasseResponse
+                {
+                    class_id = assignment.Classe.class_id,
+                    class_name = assignment.Classe.class_name
+                }
             };
         }
         public async Task<bool> Delete(int assignmentId)
