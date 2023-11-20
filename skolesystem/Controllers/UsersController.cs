@@ -33,6 +33,8 @@ namespace skolesystem.Controllers
             _jwtUtils = jwtUtils;
         }
 
+        
+
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(LoginRequest login)
@@ -117,11 +119,23 @@ namespace skolesystem.Controllers
             return Ok(userDto);
         }
 
+        /*public string HashPassword(string password)
+        {
+            // Generate a random salt
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the recommended saltWorkFactor
+
+            // Hash the password with the salt
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
+
+            return hashedPassword;
+        }*/
+
         [Authorize(1)]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> CreateUser(UserCreateDto userDto)
         {
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
             var user = new Users
             {
                 surname = userDto.surname,
@@ -130,7 +144,7 @@ namespace skolesystem.Controllers
                 role_id = userDto.role_id
 
             };
-            user.password_hash = BCrypt.Net.BCrypt.HashPassword(userDto.password_hash);
+            user.password_hash = BCrypt.Net.BCrypt.HashPassword(userDto.password_hash, salt);
 
 
             await _usersService.AddUser(user);
