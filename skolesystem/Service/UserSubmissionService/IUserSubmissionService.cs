@@ -13,7 +13,7 @@ namespace skolesystem.Service.UserSubmissionService
         Task<UserSubmissionResponse> GetById(int UserSubmissionId);
         Task<UserSubmissionResponse> Create(NewUserSubmission newUserSubmission);
         Task<UserSubmissionResponse> Update(int UserSubmissionsId, UpdateUserSubmission updateUserSubmission);
-
+        Task SoftDeleteUserSubmission(int id);
         Task<bool> Delete(int UserSubmissionId);
     }
 }

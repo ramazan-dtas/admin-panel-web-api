@@ -16,7 +16,7 @@ namespace skolesystem.Models
         [Required]
         public DateTime submission_date { get; set; }
 
-        public int is_deleted { get; set; }
+        public bool is_deleted { get; set; }
 
         [ForeignKey("Assignment")]
         public int assignment_id { get; set; }

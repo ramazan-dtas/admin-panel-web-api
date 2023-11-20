@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "HxZMVyE7ZNjv0r6rL0GvZqJn8leZKbjynmrMAUwmc0gP3aht3DlqDUK9Gr0D26hm732XkdEOwD8q1xFswFeVWw==",
+  "dgSpecHash": "ey76QOW25NvmxUQxenrLakZof7ojQ47oArpySHpeinHz/I9Oewtwf4lfamKXwxEuEFiE44lEVq3tY9AnPh8Mzw==",
   "success": true,
   "projectFilePath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem/skolesystem.csproj",
   "expectedPackageFiles": [
     "/Users/ramazandtas12gmail.com/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/ramazandtas12gmail.com/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/bouncycastle.cryptography/2.2.1/bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

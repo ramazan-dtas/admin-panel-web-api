@@ -11,6 +11,8 @@ namespace skolesystem.DTOs.UserSubmission.Response
 
         public DateTime userSubmission_date { get; set; }
 
+        public bool is_deleted { get; set; }
+
         public UserSubmissionAssignmentResponse userSubmissionAssignmentResponse { get; set; }
         public UserSubmissionUserResponse userSubmissionUserResponse { get; set; }
 

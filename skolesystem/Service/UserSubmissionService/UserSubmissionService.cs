@@ -30,6 +30,7 @@ namespace skolesystem.Service.UserSubmissionService
                 userSubmission_Id = a.submission_id,
                 userSubmission_text = a.submission_text,
                 userSubmission_date = a.submission_date,
+                is_deleted = a.is_deleted,
                 userSubmissionAssignmentResponse = new UserSubmissionAssignmentResponse
                 {
                     opgave_Id = a.Assignment.assignment_id,
@@ -54,6 +55,7 @@ namespace skolesystem.Service.UserSubmissionService
                 userSubmission_Id = a.submission_id,
                 userSubmission_text = a.submission_text,
                 userSubmission_date = a.submission_date,
+                is_deleted = a.is_deleted,
                 userSubmissionAssignmentResponse = new UserSubmissionAssignmentResponse
                 {
                     opgave_Id = a.Assignment.assignment_id,
@@ -77,6 +79,7 @@ namespace skolesystem.Service.UserSubmissionService
                 userSubmission_Id = a.submission_id,
                 userSubmission_text = a.submission_text,
                 userSubmission_date = a.submission_date,
+                is_deleted = a.is_deleted,
                 userSubmissionUserResponse = new UserSubmissionUserResponse
                 {
                     user_id = a.User.user_id,
@@ -102,6 +105,7 @@ namespace skolesystem.Service.UserSubmissionService
                 userSubmission_Id = UserSubmission.submission_id,
                 userSubmission_text = UserSubmission.submission_text,
                 userSubmission_date = UserSubmission.submission_date,
+               // is_deleted = UserSubmission.is_deleted,
                 userSubmissionAssignmentResponse = new UserSubmissionAssignmentResponse
                 {
                     opgave_Id = UserSubmission.Assignment.assignment_id,
@@ -123,6 +127,7 @@ namespace skolesystem.Service.UserSubmissionService
             {
                 submission_text = newUserSubmission.userSubmission_text,
                 submission_date = newUserSubmission.userSubmission_date,
+                is_deleted = newUserSubmission.is_deleted,
                 user_id = newUserSubmission.UserId,
                 assignment_id = newUserSubmission.assignmentId
             };
@@ -134,7 +139,7 @@ namespace skolesystem.Service.UserSubmissionService
             {
                 userSubmission_text = UserSubmission.submission_text,
                 userSubmission_date = UserSubmission.submission_date,
-                
+                is_deleted = UserSubmission.is_deleted,
                 userSubmissionAssignmentResponse = new UserSubmissionAssignmentResponse
                 {
                     opgave_Id = UserSubmission.Assignment.assignment_id,
@@ -191,7 +196,12 @@ namespace skolesystem.Service.UserSubmissionService
             return (result != null);
         }
 
-        
+        public async Task SoftDeleteUserSubmission(int id)
+        {
+            await _UserSubmissionRepository.SoftDeleteUserSubmission(id);
+        }
+
+
     }
 }
 

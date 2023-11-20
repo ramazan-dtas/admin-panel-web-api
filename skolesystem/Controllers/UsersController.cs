@@ -11,6 +11,7 @@ using skolesystem.Authorization;
 using skolesystem.Migrations.UsersDb;
 using Users = skolesystem.Models.Users;
 using skolesystem.Repository;
+using BCrypt.Net;
 
 namespace skolesystem.Controllers
 {
@@ -22,6 +23,7 @@ namespace skolesystem.Controllers
         private readonly IUsersService _usersService;
         private readonly IUsersRepository _userRepository;
         private readonly IJwtUtils _jwtUtils;
+
 
         public UserController(UsersDbContext context, IUsersRepository usersRepository,IUsersService usersService, IJwtUtils jwtUtils)
         {
@@ -44,7 +46,7 @@ namespace skolesystem.Controllers
                     return Unauthorized();
                 }
 
-                if (user.password_hash == login.password_hash)
+                if (user.password_hash == login.password_hash || BCrypt.Net.BCrypt.Verify(login.password_hash, user.password_hash))//()
                 {
 
                     return Ok(new LoginResponse
@@ -128,6 +130,8 @@ namespace skolesystem.Controllers
                 role_id = userDto.role_id
 
             };
+            user.password_hash = BCrypt.Net.BCrypt.HashPassword(userDto.password_hash);
+
 
             await _usersService.AddUser(user);
 

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "u7UNiMLYN0Aa8Q8SNM+UmYsK9SiCkKzfqhJv1u6ks8v/nmwS9aPtIaNVeYuU0MgfcauQDpNZASthOwH30i4Vxg==",
+  "dgSpecHash": "BKNHpxxZCX9uSl5tHUvDrTxmtMVjiPdt5m12uq9C0R65sUM2lcE2V89An5qkl+pX8PlXrbzrvcq8kpHaQ0VwyA==",
   "success": true,
   "projectFilePath": "/Users/ramazandtas12gmail.com/Downloads/admin-panel-web-api-Merged1/admin-panel-web-api/skolesystem.test/skolesystem.test.csproj",
   "expectedPackageFiles": [
     "/Users/ramazandtas12gmail.com/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/ramazandtas12gmail.com/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/bouncycastle.cryptography/2.2.1/bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/castle.core/5.1.1/castle.core.5.1.1.nupkg.sha512",
     "/Users/ramazandtas12gmail.com/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",

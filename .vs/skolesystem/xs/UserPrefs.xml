@@ -1,49 +1,68 @@
-﻿<Properties StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https" GitUserInfo="UsingMD">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.skolesystem.test FirstBuild="True" />
+﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{27AB0FB5-BE0D-4648-B021-88533AE0CF9F}|https">
+  <MonoDevelop.Ide.ItemProperties.skolesystem PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="skolesystem/Repository/EnrollmentRepository/EnrollmentRepository.cs">
+  <MonoDevelop.Ide.ItemProperties.skolesystem.test FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="skolesystem/DTOs/Enrollment/Response/EnrollmentClassResponse.cs">
     <Files>
-      <File FileName="skolesystem/Controllers/AssignmentController.cs" Line="110" Column="40" />
-      <File FileName="skolesystem/Service/AssignmentService/AssignmentService.cs" Line="91" Column="62" />
-      <File FileName="skolesystem/Models/Classe.cs" Line="1" Column="1" />
-      <File FileName="skolesystem/Models/Enrollments.cs" Line="1" Column="1" />
-      <File FileName="skolesystem/Repository/AssignmentRepository/AssignmentRepository.cs" Line="24" Column="14" />
-      <File FileName="skolesystem/Repository/EnrollmentRepository/EnrollmentRepository.cs" Line="50" Column="152" />
-      <File FileName="skolesystem/Service/EnrollmentService/EnrollmentService.cs" Line="66" Column="18" />
-      <File FileName="skolesystem/Controllers/EnrollmentController.cs" Line="110" Column="14" />
-      <File FileName="skolesystem/DTOs/Enrollment/Response/EnrollmentResponse.cs" Line="8" Column="5" />
+      <File FileName="skolesystem/Controllers/AssignmentController.cs" />
+      <File FileName="skolesystem/Service/AssignmentService/AssignmentService.cs" />
+      <File FileName="skolesystem/Models/Classe.cs" />
+      <File FileName="skolesystem/Models/Enrollments.cs" />
+      <File FileName="skolesystem/Repository/AssignmentRepository/AssignmentRepository.cs" />
+      <File FileName="skolesystem/DTOs/Enrollment/Response/EnrollmentResponse.cs" />
+      <File FileName="skolesystem/Models/UserSubmission.cs" />
+      <File FileName="skolesystem/Repository/UserSubmissionRepository/UserSubmissionRepository.cs" />
+      <File FileName="skolesystem/Service/UserSubmissionService/UserSubmissionService.cs" />
+      <File FileName="skolesystem/Service/UserSubmissionService/IUserSubmissionService.cs" />
+      <File FileName="skolesystem/Controllers/UserSubmissionController.cs" />
+      <File FileName="skolesystem/Repository/UserSubmissionRepository/IUserSubmissionRepository.cs" />
+      <File FileName="skolesystem/Repository/EnrollmentRepository/IEnrollmentRepository.cs" />
+      <File FileName="skolesystem/Repository/ISkemaRepository.cs" />
+      <File FileName="skolesystem/Models/Skema.cs" />
+      <File FileName="skolesystem/Models/Users.cs" />
+      <File FileName="skolesystem/Repository/IUsersRepository.cs" />
+      <File FileName="skolesystem/DTOs/UserSubmission/Request/NewUserSubmission.cs" />
+      <File FileName="skolesystem/DTOs/UserSubmission/Request/UpdateUserSubmission.cs" />
+      <File FileName="skolesystem/DTOs/UserCreateDto.cs" />
+      <File FileName="skolesystem/DTOs/UserSubmission/Response/UserSubmissionResponse.cs" />
+      <File FileName="skolesystem/Service/IUsersService.cs" />
+      <File FileName="skolesystem/Repository/EnrollmentRepository/EnrollmentRepository.cs" />
+      <File FileName="skolesystem/Service/EnrollmentService/EnrollmentService.cs" />
+      <File FileName="skolesystem/Controllers/EnrollmentController.cs" />
+      <File FileName="skolesystem/Controllers/UsersController.cs" />
+      <File FileName="skolesystem/Controllers/SubjectController.cs" />
+      <File FileName="skolesystem/Models/Subject.cs" />
+      <File FileName="skolesystem/Models/Assignment.cs" Line="1" Column="1" />
+      <File FileName="skolesystem/Repository/IUser_informationRepository.cs" NotebookId="1" />
+      <File FileName="skolesystem/Repository/ClasseRepository/ClasseRepository.cs" NotebookId="1" />
+      <File FileName="skolesystem/Repository/ClasseRepository/IClasseRepository.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="skolesystem/DTOs/Enrollment/Response/EnrollmentClassResponse.cs" Line="1" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="skolesystem">
-            <Node name="skolesystem">
+          <Node name="skolesystem" expanded="True">
+            <Node name="skolesystem" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="DTOs" expanded="True">
                 <Node name="Enrollment" expanded="True">
-                  <Node name="Response" expanded="True" />
+                  <Node name="Response" expanded="True">
+                    <Node name="EnrollmentClassResponse.cs" selected="True" />
+                  </Node>
                 </Node>
               </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="Repository">
-                <Node name="AssignmentRepository" expanded="True" />
-                <Node name="EnrollmentRepository">
-                  <Node name="EnrollmentRepository.cs" selected="True" />
-                </Node>
+              <Node name="Repository" expanded="True">
+                <Node name="ClasseRepository" expanded="True" />
               </Node>
-            </Node>
-            <Node name="skolesystem.test" expanded="True">
-              <Node name="Controller" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.skolesystem PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
 </Properties>

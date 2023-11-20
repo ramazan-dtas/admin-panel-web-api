@@ -18,6 +18,9 @@ namespace skolesystem.DTOs.UserSubmission.Request
         public DateTime userSubmission_date { get; set; }
 
         [Required]
+        public bool is_deleted { get; set; }
+
+        [Required]
         [Range(1, int.MaxValue)]
         public int UserId { get; set; }
 

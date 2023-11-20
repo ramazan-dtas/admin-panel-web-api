@@ -12,6 +12,8 @@ namespace skolesystem.Repository.UserSubmissionRepository
         Task<UserSubmission> InsertNewUserSubmission(UserSubmission userSubmission);
         Task<UserSubmission> UpdateExistingUserSubmission(int userSubmissionId, UserSubmission userSubmission);
         Task<UserSubmission> DeleteUserSubmission(int userSubmissionId);
+        Task SoftDeleteUserSubmission(int id);
+
     }
 }
 

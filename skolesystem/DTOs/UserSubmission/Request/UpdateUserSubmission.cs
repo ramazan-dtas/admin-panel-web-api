@@ -16,6 +16,9 @@ namespace skolesystem.DTOs.UserSubmission.Request
 
         [Required]
         public DateTime userSubmission_date { get; set; }
+
+        [Required]
+        public bool is_deleted { get; set; }
     }
 }
 
