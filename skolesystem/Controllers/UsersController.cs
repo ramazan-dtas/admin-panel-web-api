@@ -86,7 +86,7 @@ namespace skolesystem.Controllers
                     user_id = user.user_id,
                     surname = user.surname,
                     email = user.email,
-                    password_hash = user.password_hash,
+                    //password_hash = user.password_hash,
                     is_deleted = user.is_deleted,
                     role_id = user.role_id
                 });
@@ -111,24 +111,13 @@ namespace skolesystem.Controllers
                 user_id = user.user_id,
                 surname = user.surname,
                 email = user.email,
-                password_hash = user.password_hash,
+                //password_hash = user.password_hash,
                 is_deleted = user.is_deleted,
                 role_id = user.role_id
             };
 
             return Ok(userDto);
         }
-
-        /*public string HashPassword(string password)
-        {
-            // Generate a random salt
-            string salt = BCrypt.Net.BCrypt.GenerateSalt(12); // 12 is the recommended saltWorkFactor
-
-            // Hash the password with the salt
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password, salt);
-
-            return hashedPassword;
-        }*/
 
         [Authorize(1)]
         [HttpPost]
