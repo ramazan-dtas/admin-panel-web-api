@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace skolesystem.DTOs
+namespace skolesystem.DTOs.Absence.Request
 {
-    public class AbsenceCreateDto
-    {
+	public class AbsenceCreateDto
+	{
         [Required]
         public int user_id { get; set; }
 
@@ -17,5 +18,9 @@ namespace skolesystem.DTOs
         public DateTime absence_date { get; set; }
 
         public string reason { get; set; }
+
+        public bool is_deleted { get; set; } = false;
+
     }
 }
+

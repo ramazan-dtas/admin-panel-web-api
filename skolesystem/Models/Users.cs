@@ -14,6 +14,7 @@ namespace skolesystem.Models
         public int role_id { get; set; }
         public List<UserSubmission> userSubmissions { get; set; }
         public List<Enrollments> enrollments { get; set; }
+        public List<Absence> absences { get; set; }
     }
 
 }

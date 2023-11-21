@@ -3,9 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using skolesystem.DTOs;
 using skolesystem.Models;
 using skolesystem.Service;
+using skolesystem.DTOs.Absence.Response;
+using skolesystem.DTOs.Absence.Request;
+using skolesystem.DTOs.UserSubmission.Response;
+using skolesystem.DTOs.UserSubmission.Request;
+using skolesystem.Service.AbsenceService;
+using skolesystem.Service.UserSubmissionService;
 
 namespace skolesystem.Controllers
 {
@@ -13,116 +18,192 @@ namespace skolesystem.Controllers
     [ApiController]
     public class AbsenceController : ControllerBase
     {
-        private readonly IAbsenceService _absenceService;
+        private readonly IAbsenceService _UserSubmissionService;
 
-        public AbsenceController(IAbsenceService absenceService)
+        public AbsenceController(IAbsenceService UserSubmissionService)
         {
-            _absenceService = absenceService;
+            _UserSubmissionService = UserSubmissionService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<AbsenceReadDto>> GetAbsences()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAll()
         {
-            var absences = await _absenceService.GetAllAbsences();
-            var absenceDtos = new List<AbsenceReadDto>();
-            foreach (var absence in absences)
+            try
             {
-                absenceDtos.Add(new AbsenceReadDto
+                List<AbsenceReadDto> UserSubmissions = await _UserSubmissionService.GetAllAbsences();
+
+                if (UserSubmissions == null)
                 {
-                    absence_id = absence.absence_id,
-                    user_id = absence.user_id,
-                    teacher_id = absence.teacher_id,
-                    class_id = absence.class_id,
-                    absence_date = absence.absence_date,
-                    reason = absence.reason,
-                    is_deleted = absence.is_deleted
-                });
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (UserSubmissions.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(UserSubmissions);
+
             }
-            return absenceDtos;
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(AbsenceReadDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> GetAbsenceById(int id)
+        [HttpGet("ByAbsenceClasse/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllEnrollmentsByAssignment([FromRoute] int id)
         {
-            var absence = await _absenceService.GetAbsenceById(id);
-
-            if (absence == null)
+            try
             {
-                return NotFound();
+                List<AbsenceReadDto> assignments = await _UserSubmissionService.GetAllAbsencebyClasse(id);
+
+                if (assignments == null)
+                {
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (assignments.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(assignments);
+
             }
-
-            var absenceDto = new AbsenceReadDto
+            catch (Exception ex)
             {
-                absence_id = absence.absence_id,
-                user_id = absence.user_id,
-                teacher_id = absence.teacher_id,
-                class_id = absence.class_id,
-                absence_date = absence.absence_date,
-                reason = absence.reason,
-                is_deleted = absence.is_deleted
-            };
+                return Problem(ex.Message);
+            }
+        }
 
-            return Ok(absenceDto);
+        [HttpGet("ByAbsenceUser/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllEnrollmentsByUser([FromRoute] int id)
+        {
+            try
+            {
+                List<AbsenceReadDto> users = await _UserSubmissionService.GetAllAbsencebyUser(id);
+
+                if (users == null)
+                {
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (users.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(users);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            try
+            {
+                AbsenceReadDto UserSubmissions = await _UserSubmissionService.GetAbsenceById(id);
+
+                if (UserSubmissions == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(UserSubmissions);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateAbsence(AbsenceCreateDto absenceDto)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] AbsenceCreateDto newUserSubmission)
         {
-            var absence = new Absence
+            try
             {
-                user_id = absenceDto.user_id,
-                teacher_id = absenceDto.teacher_id,
-                class_id = absenceDto.class_id,
-                absence_date = absenceDto.absence_date,
-                reason = absenceDto.reason,
-                
-            };
+                AbsenceReadDto UserSubmissions = await _UserSubmissionService.CreateAbsence(newUserSubmission);
 
-            await _absenceService.CreateAbsence(absence);
+                if (UserSubmissions == null)
+                {
+                    return Problem("UserSubmission was not created, something went wrong");
+                }
 
-            return CreatedAtAction(nameof(GetAbsenceById), new { id = absence.absence_id }, absenceDto);
+                return Ok(UserSubmissions);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAbsence(int id, AbsenceUpdateDto absenceDto)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] AbsenceUpdateDto updateUserSubmission)
         {
-            var existingAbsence = await _absenceService.GetAbsenceById(id);
-
-            if (existingAbsence == null)
+            try
             {
-                return NotFound();
+                AbsenceReadDto UserSubmissions = await _UserSubmissionService.UpdateAbsence(id, updateUserSubmission);
+
+                if (UserSubmissions == null)
+                {
+                    return Problem("UserSubmission was not updated, something went wrong");
+                }
+
+                return Ok(UserSubmissions);
             }
-
-            existingAbsence.user_id = absenceDto.user_id;
-            existingAbsence.teacher_id = absenceDto.teacher_id;
-            existingAbsence.class_id = absenceDto.class_id;
-            existingAbsence.absence_date = absenceDto.absence_date;
-            existingAbsence.reason = absenceDto.reason;
-            // Map other fields as needed
-
-            await _absenceService.UpdateAbsence(id, existingAbsence);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> DeleteAbsence(int id)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            var absenceToDelete = await _absenceService.GetAbsenceById(id);
-
-            if (absenceToDelete == null)
+            try
             {
-                return NotFound();
+                bool result = await _UserSubmissionService.GetDeletedAbsences(id);
+
+                if (!result)
+                {
+                    return Problem("UserSubmission was not deleted, something went wrong");
+                }
+
+                return NoContent();
             }
-
-            await _absenceService.SoftDeleteAbsence(id);
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
     }
 }

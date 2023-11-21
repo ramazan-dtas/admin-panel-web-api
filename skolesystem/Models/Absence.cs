@@ -10,14 +10,10 @@ namespace skolesystem.Models
         [Key]
         public int absence_id { get; set; }
 
-        [Required]
-        public int user_id { get; set; } // The student who is absent
 
         [Required]
         public int teacher_id { get; set; } // The teacher recording the absence
 
-        [Required]
-        public int class_id { get; set; } // The class in which the absence occurred
 
         [Required]
         public DateTime absence_date { get; set; } // Date of the absence
@@ -25,6 +21,14 @@ namespace skolesystem.Models
         public string reason { get; set; } // Optional field for specifying the reason for the absence
 
         public bool is_deleted { get; set; } = false;
+
+        [ForeignKey("Classe")]
+        public int class_id { get; set; }
+        public Classe Classe { get; set; }
+
+        [ForeignKey("User")]
+        public int user_id { get; set; }
+        public Users User { get; set; }
 
         // Navigation properties
         //[ForeignKey(nameof(user_id))]

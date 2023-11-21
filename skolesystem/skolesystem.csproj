@@ -27,9 +27,19 @@
 
   <ItemGroup>
     <None Remove="Authorization\" />
+    <None Remove="DTOs\Absence\" />
+    <None Remove="DTOs\Absence\Request\" />
+    <None Remove="DTOs\Absence\Response\" />
+    <None Remove="Service\AbsenceService\" />
+    <None Remove="Repository\AbsenceRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authorization\" />
+    <Folder Include="DTOs\Absence\" />
+    <Folder Include="DTOs\Absence\Request\" />
+    <Folder Include="DTOs\Absence\Response\" />
+    <Folder Include="Service\AbsenceService\" />
+    <Folder Include="Repository\AbsenceRepository\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Authorization\Role.cs">
