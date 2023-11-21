@@ -32,6 +32,11 @@
     <None Remove="DTOs\Absence\Response\" />
     <None Remove="Service\AbsenceService\" />
     <None Remove="Repository\AbsenceRepository\" />
+    <None Remove="DTOs\Skema\" />
+    <None Remove="DTOs\Skema\Request\" />
+    <None Remove="DTOs\Skema\Response\" />
+    <None Remove="Repository\SkemaRepository\" />
+    <None Remove="Service\SkemaService\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authorization\" />
@@ -40,6 +45,11 @@
     <Folder Include="DTOs\Absence\Response\" />
     <Folder Include="Service\AbsenceService\" />
     <Folder Include="Repository\AbsenceRepository\" />
+    <Folder Include="DTOs\Skema\" />
+    <Folder Include="DTOs\Skema\Request\" />
+    <Folder Include="DTOs\Skema\Response\" />
+    <Folder Include="Repository\SkemaRepository\" />
+    <Folder Include="Service\SkemaService\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Authorization\Role.cs">

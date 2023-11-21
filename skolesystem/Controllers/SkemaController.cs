@@ -3,7 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using skolesystem.Data;
 using skolesystem.DTOs;
+using skolesystem.DTOs.Enrollment.Request;
+using skolesystem.DTOs.Enrollment.Response;
+using skolesystem.DTOs.Skema.Request;
+using skolesystem.DTOs.Skema.Response;
 using skolesystem.Models;
+using skolesystem.Service.EnrollmentService;
+using skolesystem.Service.SkemaService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,84 +21,162 @@ namespace skolesystem.Controllers
     [ApiController]
     public class SkemaController : ControllerBase
     {
-        private readonly ISkemaRepository _skemaRepository;
+        private readonly ISkemaService _SkemaService;
 
-        public SkemaController(ISkemaRepository skemaRepository)
+        public SkemaController(ISkemaService SkemaService)
         {
-            _skemaRepository = skemaRepository;
+            _SkemaService = SkemaService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAll()
         {
-            var skemaList = await _skemaRepository.GetAll();
-            return Ok(skemaList);
+            try
+            {
+                List<SkemaReadDto> Enrollments = await _SkemaService.GetAllSkema();
+
+                if (Enrollments == null)
+                {
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (Enrollments.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(Enrollments);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("ByClass/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllEnrollmentsByClass([FromRoute] int id)
         {
-            var skema = await _skemaRepository.GetById(id);
-
-            if (skema == null)
+            try
             {
-                return NotFound();
-            }
+                List<SkemaReadDto> Enrollments = await _SkemaService.GetAllSkemaByClass(id);
 
-            return Ok(skema);
+                if (Enrollments == null)
+                {
+                    return Problem("Got no data, not even an empty list, this is unexpected");
+                }
+
+                if (Enrollments.Count == 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(Enrollments);
+
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            try
+            {
+                SkemaReadDto Enrollments = await _SkemaService.GetById(id);
+
+                if (Enrollments == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(Enrollments);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] SkemaCreateDto skemaDto)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Create([FromBody] SkemaCreateDto newEnrollment)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                SkemaReadDto Enrollments = await _SkemaService.Create(newEnrollment);
+
+                if (Enrollments == null)
+                {
+                    return Problem("Enrollment was not created, something went wrong");
+                }
+
+                return Ok(Enrollments);
             }
-
-            var skemaId = await _skemaRepository.Create(new Skema
+            catch (Exception ex)
             {
-                subject_id = skemaDto.subject_id,
-                day_of_week = skemaDto.day_of_week,
-                subject_name = skemaDto.subject_name,
-                start_time = skemaDto.start_time,
-                end_time = skemaDto.end_time,
-                class_id = skemaDto.class_id
-            });
-
-            return CreatedAtAction(nameof(GetById), new { id = skemaId }, null);
+                return Problem(ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] SkemaCreateDto skemaDto)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] SkemaUpdateDto updateEnrollment)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             try
             {
-                await _skemaRepository.Update(id, skemaDto);
-                return NoContent();
+                SkemaReadDto Enrollments = await _SkemaService.Update(id, updateEnrollment);
+
+                if (Enrollments == null)
+                {
+                    return Problem("Enrollment was not updated, something went wrong");
+                }
+
+                return Ok(Enrollments);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return Problem(ex.Message);
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             try
             {
-                await _skemaRepository.Delete(id);
+                bool result = await _SkemaService.Delete(id);
+
+                if (!result)
+                {
+                    return Problem("Enrollment was not deleted, something went wrong");
+                }
+
                 return NoContent();
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return Problem(ex.Message);
             }
         }
     }

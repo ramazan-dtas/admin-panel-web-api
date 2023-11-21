@@ -20,6 +20,8 @@ using skolesystem.Repository.EnrollmentsRepository;
 using skolesystem.Service.EnrollmentService;
 using skolesystem.Repository.AbsenceRepository;
 using skolesystem.Service.AbsenceService;
+using skolesystem.Repository.SkemaRepository;
+using skolesystem.Service.SkemaService;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";

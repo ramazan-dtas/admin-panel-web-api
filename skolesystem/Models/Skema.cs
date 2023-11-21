@@ -9,8 +9,6 @@ namespace skolesystem.Models
         [Key]
         public int schedule_id { get; set; }
 
-        public int subject_id { get; set; }
-
         public string day_of_week { get; set; }
 
         public string subject_name { get; set; }
@@ -19,20 +17,8 @@ namespace skolesystem.Models
 
         public string end_time { get; set; }
 
+        [ForeignKey("Classe")]
         public int class_id { get; set; }
-        
-        //public string Class { get; set; }
-
-        //public string UserSubject { get; set; }
-
-        // public string Class { get; set; }
-
-        // public string UserSubject { get; set; }
-
-        //[ForeignKey("ClassId")]
-        //public Class Class { get; set; }
-
-        //[ForeignKey("UserSubjectId")]
-        //public UserSubject UserSubject { get; set; }
+        public Classe Classe { get; set; }
     }
 }

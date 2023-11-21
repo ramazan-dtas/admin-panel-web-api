@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace skolesystem.DTOs
+﻿using System;
+namespace skolesystem.DTOs.Skema.Request
 {
-    public class SkemaCreateDto
-    {
+	public class SkemaCreateDto
+	{
         public int schedule_id { get; set; }
 
         public int subject_id { get; set; }
@@ -17,10 +16,6 @@ namespace skolesystem.DTOs
         public string end_time { get; set; }
 
         public int class_id { get; set; }
-
-        //public string Class { get; set; }
-
-        //public string UserSubject { get; set; }
     }
-
 }
+

@@ -24,7 +24,7 @@ namespace skolesystem.Models
         public List<Assignment> assignments { get; set; }
         public List<Enrollments> enrollments { get; set; }
         public List<Absence> absences { get; set; }
-
+        public List<Skema> skemas { get; set; }
     }
 }
 
